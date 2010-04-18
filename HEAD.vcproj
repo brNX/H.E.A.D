@@ -179,6 +179,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\LevelManager.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\PhysicalObject.cpp"
 				>
 			</File>
@@ -209,6 +213,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\LevelManager.h"
+				>
+			</File>
+			<File
 				RelativePath=".\PhysicalObject.h"
 				>
 			</File>
@@ -231,6 +239,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\ClassDiagram1.cd"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

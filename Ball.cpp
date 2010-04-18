@@ -3,7 +3,7 @@
 Ball::Ball(void)
 {
 	type = O_INVALID;
-	bodyshape=NULL;
+	bodyshape=0;
 	body=NULL;
 	radius=-1;
 	pX=0;
@@ -46,11 +46,11 @@ Ball::~Ball(void)
 {
 	if(bodyshape)
 		delete bodyshape;
-	bodyshape=NULL;
+	bodyshape=0;
 
 	if(body)
 		body->GetWorld()->DestroyBody(body);
-	body=NULL;
+	body=0;
 }
 
 void Ball::draw(){
