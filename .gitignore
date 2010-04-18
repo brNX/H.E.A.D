@@ -1,0 +1,9 @@
+
+Debug/*.obj
+Release/*.obj
+*.manifest
+*.htm
+*.idb
+*.pdb
+*.dep
+*.dll

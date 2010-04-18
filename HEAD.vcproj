@@ -179,6 +179,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Level.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\LevelManager.cpp"
 				>
 			</File>
@@ -188,6 +192,10 @@
 			</File>
 			<File
 				RelativePath=".\program.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Screen.cpp"
 				>
 			</File>
 			<File
@@ -213,6 +221,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Level.h"
+				>
+			</File>
+			<File
 				RelativePath=".\LevelManager.h"
 				>
 			</File>
@@ -222,6 +234,10 @@
 			</File>
 			<File
 				RelativePath=".\program.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Screen.h"
 				>
 			</File>
 			<File
@@ -239,10 +255,6 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath=".\ClassDiagram1.cd"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>
