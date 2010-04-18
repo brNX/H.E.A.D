@@ -15,9 +15,11 @@ LevelManager * LevelManager::getInstance(){
 }
 
 void LevelManager::drawCurrentScreen(){
-
+	currentScreen->draw();
 }
 
+
 CL_Sprite * LevelManager::getSprite(CL_String8 name){
-	return new CL_Sprite(*gc, name, resources);
+
+	return new CL_Sprite(gc, name, resources);
 }

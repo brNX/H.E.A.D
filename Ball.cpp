@@ -44,6 +44,7 @@ Ball::Ball(float radius,float x,float y)
 
 	/***********codigo CLanlib***************/
 	sprite = lm->getSprite("ball");
+	sprite->set_linear_filter(true);
 
 }
 
@@ -63,6 +64,17 @@ Ball::~Ball(void)
 }
 
 void Ball::draw(){
+
+	LevelManager * lm = LevelManager::getInstance();
+
+	// Now print the position and angle of the body.
+	b2Vec2 position = body->GetPosition();
+	float angle = body->GetAngle();
+
+	float scale = lm->getScreenRatio() /(float)(sprite->get_height());
+	sprite->set_angle(CL_Angle::from_radians(-angle));
+	sprite->set_scale(scale*2,scale*2);
+	lm->drawSprite(sprite,position.x,position.y);
 
 }
 

@@ -12,6 +12,8 @@
 //1000 por ser millisegundos
 #define DESIRED_FRAME_TIME 1000.0/60.0
 
+#define DEFAULTSCREENRATIO 30
+
 
 // The start of the Application
 int App::start(const std::vector<CL_String> &args)
@@ -40,7 +42,9 @@ int App::start(const std::vector<CL_String> &args)
 			//get instance do levelmanager
 			lm = LevelManager::getInstance();
 			
-			lm->setGraphicContext(&gc);
+			lm->setWindow(&window);
+
+			lm->setScreenRatio(DEFAULTSCREENRATIO);
 
 			FramerateCounter frameratecounter;
 
