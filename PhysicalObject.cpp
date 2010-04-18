@@ -17,3 +17,8 @@ void PhysicalObject::draw(){
 EObjectType  PhysicalObject::getType(){
 	return type;
 }
+
+void PhysicalObject::setPosition(float x , float y){
+	pX=x;
+	pY=y;
+}

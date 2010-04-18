@@ -19,14 +19,16 @@ public:
 	virtual ~PhysicalObject(void);
 protected:
 	EObjectType type;
-	CL_Sprite sprite;
+	CL_Sprite * sprite;
 	CL_CollisionOutline coutline;
 	b2Body * body;
 	b2BodyDef bodydef;
 	b2Shape * bodyshape;
 	b2FixtureDef fixturedef;
+	float pX,pY;
 public:
 	virtual void draw();
 	virtual void handleevents();
 	EObjectType getType();
+	void setPosition(float x , float y);
 };

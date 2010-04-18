@@ -10,12 +10,10 @@ public:
 	~Ball(void);
 private:
 	float radius;
-	float pX,pY;
 public:	
 	void draw();
 	void handleevents();
 	void setRadius(float r);
-	void setPosition(float x , float y);
-	float getRadius();
+	inline float getRadius(){return radius;}
 };
 

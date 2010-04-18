@@ -37,6 +37,11 @@ int App::start(const std::vector<CL_String> &args)
 			// Get the graphic context
 			CL_GraphicContext gc = window.get_gc();
 
+			//get instance do levelmanager
+			lm = LevelManager::getInstance();
+			
+			lm->setGraphicContext(&gc);
+
 			FramerateCounter frameratecounter;
 
 			CL_Font fnt_clansoft;

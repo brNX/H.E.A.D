@@ -179,6 +179,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Block.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Level.cpp"
 				>
 			</File>
@@ -214,6 +218,10 @@
 			</File>
 			<File
 				RelativePath=".\Ball.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Block.h"
 				>
 			</File>
 			<File

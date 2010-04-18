@@ -1,10 +1,13 @@
 #include "Ball.h"
+#include "LevelManager.h"
+#include "Level.h"
 
 Ball::Ball(void)
 {
 	type = O_INVALID;
+	sprite = 0;
 	bodyshape=0;
-	body=NULL;
+	body=0;
 	radius=-1;
 	pX=0;
 	pY=0;
@@ -17,6 +20,8 @@ Ball::Ball(float radius,float x,float y)
 	pX=x;
 	pY=y;
 
+	LevelManager * lm = LevelManager::getInstance();
+
 	/**********codigo Box2D***************/
 	bodydef.type = b2_dynamicBody;
 	bodydef.position.Set(x,y);
@@ -24,21 +29,21 @@ Ball::Ball(float radius,float x,float y)
 	bodyshape=new b2CircleShape();
 	((b2CircleShape*)bodyshape)->m_radius=radius;
 
-	//TODO: usar o levelmanager/ou screenmanager para inserir objecto no world do box2d
 	body=NULL;
-	//body = world.CreateBody(&bodyDef);
+	b2World * world = ((Level*)lm->getCurrentScreen())->getWorld();
+	body = world->CreateBody(&bodydef);
 	
 	b2FixtureDef fd;
 	fd.shape = bodyshape;
 	fd.density = 1.0f;
 	fd.friction = 0.3f;
 
-	//TODO:body->CreateFixture(&fd);
+	body->CreateFixture(&fd);
 	/**************************************/
 
 
 	/***********codigo CLanlib***************/
-	//TODO: usar o levelmanager /ou screenmanager para criar o sprite e o CL_collisionoutline
+	sprite = lm->getSprite("ball");
 
 }
 
@@ -51,6 +56,10 @@ Ball::~Ball(void)
 	if(body)
 		body->GetWorld()->DestroyBody(body);
 	body=0;
+
+	if(sprite)
+		delete sprite;
+	sprite=0;
 }
 
 void Ball::draw(){
@@ -64,13 +73,3 @@ void Ball::handleevents(){
 void Ball::setRadius(float r){
 	radius=r;
 }
-
-float Ball::getRadius(){
-	return radius;
-}
-
-void Ball::setPosition(float x , float y){
-	pX=x;
-	pY=y;
-}
-
