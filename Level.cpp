@@ -2,6 +2,7 @@
 #include "PhysicalObject.h"
 #include "Ball.h"
 #include "Block.h"
+#include "Ramp.h"
 
 ///constantes da simulacao do Box2D
 // Prepare for simulation. Typically we use a time step of 1/60 of a
@@ -14,9 +15,8 @@
 
 Level::Level(void)
 {
-
 	// Define the gravity vector.
-	b2Vec2 gravity(1.0f, -10.0f);
+	b2Vec2 gravity(0.0f, -10.0f);
 
 	// Do we want to let bodies sleep?
 	bool doSleep = true;
@@ -67,7 +67,6 @@ void Level::HandleEvents(){
 			printf("nao\n");*/
 	}
 
-
 }
 
 ///draw :-p
@@ -83,9 +82,9 @@ void Level::draw(){
 void Level::setupLevel(){
 
 	//todo:carregar objectos de algum ficheiro ou assim
-
 	gameBall = new Ball(1.0f,3.0f,15.0f);
 	levelitems.push_back(new Block(20.0f,10.0f,0.0f,-9.0f));
 	levelitems.push_back(new Block(2.0f,1.0f,20.0f,2.0f));
+	levelitems.push_back(new Ramp(1.5,1.0));
 
 }

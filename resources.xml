@@ -6,5 +6,11 @@
 		<translation origin="center"/>
 		<rotation origin="center"/>
 	</sprite>
+	
+	<sprite name="rampa" base_angle="0">
+		<image file="resources/rampa.png"></image>
+		<translation origin="bottom_left"/>
+		<rotation origin="bottom_left"/>
+	</sprite>
   
 </resources>
