@@ -211,6 +211,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\triangulate.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Wiimote_handler.cpp"
 				>
 			</File>
@@ -262,6 +266,10 @@
 			</File>
 			<File
 				RelativePath=".\ScreenManager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\triangulate.h"
 				>
 			</File>
 			<File

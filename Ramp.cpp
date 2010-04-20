@@ -1,6 +1,7 @@
 #include "Ramp.h"
 #include "Level.h"
 #include "ScreenManager.h"
+#include "triangulate.h"
 
 Ramp::Ramp(void)
 {
@@ -34,104 +35,59 @@ Ramp::Ramp(float x, float y)
 	//define o tipo e a posição 
 	bodydef.position.Set(x,y);
 
-	//define a forma
-
-	// This defines a triangle in CCW order.
-
-	b2Vec2 vertices[3];
-	b2Vec2 vrect[5];
-
 	//cria o corpo usando as definições
 	body=NULL;
 	b2World * world = ((Level*)sm->getCurrentScreen())->getWorld();
 	body = world->CreateBody(&bodydef);
+
+	//uso do triangulate.cpp -> pega num poligono e divide em triangulos
+	Vector2dVector a;
 	
-	vrect[0].Set(0.0f, 0.0f);
-	vrect[1].Set(3.0f, 0.0f);
-	vrect[2].Set(3.0f, 0.6f);
-	vrect[3].Set(0.0f, 0.6f);
-	
-	b2PolygonShape shape;
-	
-	shape.Set(vrect,4);
+	a.push_back( b2Vec2( 0.6f,3.0f));	
+	a.push_back( b2Vec2(0.0f,3.0f));
+	a.push_back( b2Vec2(0.0f,0.0f));
+	a.push_back( b2Vec2(3.0f,0.0f));	
+	a.push_back( b2Vec2(3.0f,0.6f));
+	a.push_back( b2Vec2(2.768f,0.612f));	
+	a.push_back( b2Vec2(2.535f,0.645f));	
+	a.push_back( b2Vec2(2.3f,0.705f));
+	a.push_back( b2Vec2(2.078f,0.785f));	
+	a.push_back( b2Vec2(1.87f,0.882f));	
+	a.push_back( b2Vec2(1.672f,0.998f));
+	a.push_back( b2Vec2(1.477f,1.142f));	
+	a.push_back( b2Vec2(1.297f,1.307f));
+	a.push_back( b2Vec2(1.143f,1.475f));
+	a.push_back( b2Vec2(1.0f,1.664f	));
+	a.push_back( b2Vec2(0.878f,1.869f));
+	a.push_back( b2Vec2(0.776f,2.087f));	
+	a.push_back( b2Vec2(0.695f,2.311f));	
+	a.push_back( b2Vec2(0.635f,2.547f));	
+	a.push_back( b2Vec2(0.6f,2.8f));
 
-	body->CreateFixture(&shape,0.0f);
-		
-	vrect[3].Set(0.0f, 0.6f);
-	vrect[2].Set(0.0f, 3.0f);
-	vrect[1].Set(0.6f, 3.0f);
-	vrect[0].Set(0.6f, 0.6f);
+	Vector2dVector result;
 
-	shape.Set(vrect,4);
+	//  Invoke the triangulator to triangulate this polygon.
+	Triangulate::Process(a,result);
 
-	body->CreateFixture(&shape,0.0f);
-	
-	
-	vertices[2].Set(0.61f, 0.6f);
-	vertices[1].Set(0.6f, 3.0f);
-	vertices[0].Set(0.695f, 2.311f);
+	// print out the results.
+	int tcount = result.size()/3;
 
-	shape.Set(vertices,3);
+	for (int i=0; i<tcount; i++)
+	{
+		b2Vec2 vect[3];
 
-	body->CreateFixture(&shape,0.0f);
+		vect[0] = result[i*3+0];
+		vect[1] = result[i*3+1];
+		vect[2] = result[i*3+2];
 
-	
-	vertices[2].Set(0.6f, 0.6f);
-	vertices[1].Set(0.695f, 2.311f);
-	vertices[0].Set(0.878f, 1.869f);
+		b2PolygonShape shape;
 
-	shape.Set(vertices,3);
+		shape.Set(vect,3);
 
-	body->CreateFixture(&shape,0.0f);
+		body->CreateFixture(&shape,0.0f);
 
-	vertices[2].Set(0.6f, 0.6f);
-	vertices[1].Set(0.878f, 1.869f);
-	vertices[0].Set(1.0f, 1.664f);
-
-	shape.Set(vertices,3);
-
-	body->CreateFixture(&shape,0.0f);
-	
-	vertices[2].Set(0.6f, 0.6f);
-	vertices[1].Set(1.0f, 1.664f);
-	vertices[0].Set(1.297f, 1.307f);
-
-	shape.Set(vertices,3);
-
-	body->CreateFixture(&shape,0.0f);
-
-	vertices[2].Set(0.6f, 0.6f);
-	vertices[1].Set(1.297f, 1.307f);
-	vertices[0].Set(1.477f, 1.142f);
-
-	shape.Set(vertices,3);
-
-	body->CreateFixture(&shape,0.0f);
-
-	vertices[2].Set(0.6f, 0.6f);
-	vertices[1].Set(1.477f, 1.142f);
-	vertices[0].Set(1.87f, 0.882f);
-
-	shape.Set(vertices,3);
-
-	body->CreateFixture(&shape,0.0f);
-
-	vertices[2].Set(0.6f, 0.6f);
-	vertices[1].Set(1.87f, 0.882f);
-	vertices[0].Set(2.3f, 0.705f);
-
-	shape.Set(vertices,3);
-
-	body->CreateFixture(&shape,0.0f);
-
-	vertices[2].Set(0.6f, 0.6f);
-	vertices[0].Set(3.0f, 0.6f);
-	vertices[1].Set(2.3f, 0.705f);
-
-	shape.Set(vertices,3);
-
-	body->CreateFixture(&shape,0.0f);
-
+		printf("Triangle %d => (%f,%f) (%f,%f) (%f,%f)\n",i+1,vect[0].x,vect[0].y,vect[1].x,vect[1].y,vect[2].x,vect[2].y);
+	}
 
 	//usa o userdata para guardar um ponteiro no objecto body do Box2D (usado nas colisões)
 	body->SetUserData(this);

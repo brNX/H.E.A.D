@@ -1,1 +1,109 @@
- 
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="App" Collapsed="true">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAABAAAEAAAgAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>app.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ball" Collapsed="true">
+    <Position X="1.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAIQAAAAAAAAAAAACMAAAAAAAIA=</HashCode>
+      <FileName>Ball.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BallContactListener" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAABAAAAgAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>BallContactListener.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Block" Collapsed="true">
+    <Position X="5.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAAAAAAAAAAAIUAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Block.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FramerateCounter" Collapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIgAAAACAAAAAAAAACAAAAAAAAAAAAAAAAAQAABAA=</HashCode>
+      <FileName>framerate_counter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Level" Collapsed="true">
+    <Position X="1" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAEAAAAAAAAAABAAIQAAAAAIAAAAEBCAAAAQAAAAA=</HashCode>
+      <FileName>Level.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PhysicalObject" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAgAAEACBEAAIQAAACARABAACAAAgQAABQAAA=</HashCode>
+      <FileName>PhysicalObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Program" Collapsed="true">
+    <Position X="8.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>program.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ramp" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAIQAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Ramp.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Screen" Collapsed="true">
+    <Position X="1" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAIQAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Screen.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScreenManager" Collapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAQAECAAAAALAgCBABAAAAAIAAAIUIEAAkAgAAAAA=</HashCode>
+      <FileName>ScreenManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wiimote_handler" Collapsed="true">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FAgAAABAAAAApAAAAAAAAAIgAAAAAAIAAAgAAAAEAAA=</HashCode>
+      <FileName>Wiimote_handler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Triangulate" Collapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAABAAAAgAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>triangulate.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Typedef Name="Vector2dVector" Collapsed="true">
+    <Position X="8.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>triangulate.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="EObjectType" Collapsed="true">
+    <Position X="8.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAABAAAQAAAAAAAAAAAAAAgIAAAAAAAA=</HashCode>
+      <FileName>PhysicalObject.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
