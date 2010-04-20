@@ -4,8 +4,6 @@
 #include <Box2D/Box2D.h>
 #include "BallContactListener.h"
 
-using namespace std;
-
 class Ball;
 class PhysicalObject;
 
@@ -21,7 +19,7 @@ public:
 	inline b2World * getWorld(){return world;} 
 private:
 	Ball * gameBall;
-	vector<PhysicalObject*> levelitems;
+	std::vector<PhysicalObject*> levelitems;
 	b2World * world;
 	BallContactListener listener;
 };

@@ -5,8 +5,11 @@
 ScreenManager * ScreenManager::lm_instance = 0;
 
 
+///inicia os objectos 
 void ScreenManager::start(){
 	resources = CL_ResourceManager("resources.xml");
+	
+	//todo: por enquanto so 1 nivel , depois fazer um loader (p.ex de um ficheiro xml ou json)
 	currentScreen = new Level();
 	((Level*) currentScreen)->setupLevel();
 }
@@ -18,15 +21,17 @@ ScreenManager * ScreenManager::getInstance(){
 	return lm_instance;
 }
 
+///desenha o screen actual (level e/ou menu)
 void ScreenManager::drawCurrentScreen(){
 	currentScreen->draw();
 }
 
-
+///devolve CL_Sprite utilizando o resourcemanager
 CL_Sprite * ScreenManager::getSprite(CL_String8 name){
 	return new CL_Sprite(gc, name, &resources);
 }
 
+///proximo passo da logica e I/O
 void ScreenManager::handleEvents(){
 	currentScreen->HandleEvents();
 }

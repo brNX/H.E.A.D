@@ -9,13 +9,14 @@
 #include "Wiimote_handler.h"
 #include "framerate_counter.h"
 
-//1000 por ser millisegundos
+///1000 por ser millisegundos
 #define DESIRED_FRAME_TIME 1000.0/60.0
 
+///ratio screen/Box2D
 #define DEFAULTSCREENRATIO 30
 
 
-// The start of the Application
+/// The start of the Application
 int App::start(const std::vector<CL_String> &args)
 {
 		quit = false;
@@ -39,17 +40,21 @@ int App::start(const std::vector<CL_String> &args)
 			// Get the graphic context
 			CL_GraphicContext gc = window.get_gc();
 
-			//get instance do levelmanager
+			//get instance do screenmanager(singleton)
 			sm = ScreenManager::getInstance();
 			
+			//passa a janela
 			sm->setWindow(&window);
 
 			sm->setScreenRatio(DEFAULTSCREENRATIO);
 
+			//inicia os objectos
 			sm->start();
 
+			//framcounter so naquela...
 			FramerateCounter frameratecounter;
 
+			//prepara uma font para escrever no ecra
 			CL_Font fnt_clansoft;
 			fnt_clansoft = CL_Font(gc, L"Tahoma", 32);
 
@@ -64,6 +69,7 @@ int App::start(const std::vector<CL_String> &args)
 				// The four arguments are red, green, blue and alpha
 				gc.clear(CL_Colorf(0.0f,0.0f,0.2f));
 
+				//desenha o screen actual do screenmanager(nivel e/ou menu)
 				sm->drawCurrentScreen();
 
 				CL_String fps = cl_format("%1 fps", frameratecounter.get_framerate());
@@ -76,6 +82,7 @@ int App::start(const std::vector<CL_String> &args)
 				// This call processes user input and other events
 				CL_KeepAlive::process(0);
 
+				//proximo passo da logica e input output
 				sm->handleEvents();
 
 				unsigned drawTime = CL_System::get_time() - startTime;
@@ -101,7 +108,7 @@ int App::start(const std::vector<CL_String> &args)
 	return 0;
 }
 
-// A key was pressed
+/// A key was pressed
 void App::on_input_up(const CL_InputEvent &key, const CL_InputState &state)
 {
 	if(key.id == CL_KEY_ESCAPE)
@@ -122,7 +129,7 @@ void App::on_input_up(const CL_InputEvent &key, const CL_InputState &state)
 	}
 }
 
-// The window was closed
+/// The window was closed
 void App::on_window_close()
 {
 	quit = true;

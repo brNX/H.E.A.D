@@ -14,6 +14,7 @@ Ball::Ball(void)
 	sm = ScreenManager::getInstance();
 }
 
+///construtor com posição e raio
 Ball::Ball(float radius,float x,float y)
 {
 	type = O_BALL;
@@ -24,12 +25,16 @@ Ball::Ball(float radius,float x,float y)
 	sm = ScreenManager::getInstance();
 
 	/**********codigo Box2D***************/
+
+	//define o tipo e a posição 
 	bodydef.type = b2_dynamicBody;
 	bodydef.position.Set(x,y);
 
+	//define a forma
 	bodyshape=new b2CircleShape();
 	((b2CircleShape*)bodyshape)->m_radius=radius;
 
+	//cria o corpo usando as definições
 	body=NULL;
 	b2World * world = ((Level*)sm->getCurrentScreen())->getWorld();
 	body = world->CreateBody(&bodydef);
@@ -40,6 +45,8 @@ Ball::Ball(float radius,float x,float y)
 	fd.friction = 0.3f;
 
 	body->CreateFixture(&fd);
+
+	//usa o userdata para guardar um ponteiro no objecto body do Box2D (usado nas colisões)
 	body->SetUserData(this);
 
 	/**************************************/
@@ -50,7 +57,7 @@ Ball::Ball(float radius,float x,float y)
 	sprite = sm->getSprite("ball");
 	sprite->set_linear_filter(true);
 
-	//criar o collision outline
+	//criar o collision outline (colisões no clanlib , possivelmente sem uso)
 	coutline = CL_CollisionOutline("resources/ballc.png");
 	coutline.set_alignment(origin_center);
 }
@@ -70,13 +77,17 @@ Ball::~Ball(void)
 	sprite=0;
 }
 
+//desenha o objecto
 void Ball::draw(){
 
 	sm->drawSprite(sprite,pX,pY);
+
+	//outline de debug
 	sm->drawCoutline(&coutline,pX,pY);
 
 }
 
+///vai buscar os dados da simulação box2d e actualiza as corrdenadas
 void Ball::handleevents(){
 
 	pX=body->GetPosition().x;
@@ -94,8 +105,4 @@ void Ball::handleevents(){
 	float screenratio=sm->getScreenRatio();
 	
 	coutline.set_translation(pX*screenratio,sm->getScreensizey()-(pY*screenratio));
-}
-
-void Ball::setRadius(float r){
-	radius=r;
 }

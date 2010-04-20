@@ -1,6 +1,7 @@
 #include "BallContactListener.h"
 #include "PhysicalObject.h"
 
+//quando 2 objectos colidem pela primeira vez
 void BallContactListener::BeginContact(b2Contact* contact){
 	printf("touch\n");
 	const b2Body* bodyA = contact->GetFixtureA()->GetBody();
@@ -12,6 +13,7 @@ void BallContactListener::BeginContact(b2Contact* contact){
 	printf("PosB x:%f y:%f\n",posB.x,posB.y);
 
 
+	//vou obter o objecto a partir da userdata
 	PhysicalObject * objA = (PhysicalObject *) bodyA->GetUserData();
 	PhysicalObject * objB = (PhysicalObject *) bodyB->GetUserData();
 

@@ -2,6 +2,7 @@
 #include "ScreenManager.h"
 #include "Level.h"
 
+///contrutor standard do block, mete tipo a invalido para depois não ser usado
 Block::Block(void)
 {
 	sm = ScreenManager::getInstance();
@@ -14,6 +15,7 @@ Block::Block(void)
 	pY=0;
 }
 
+///Contrutor com os tamanhos do block
 Block::Block(float hsizex,float hsizey,float x, float y){
 	
 	type = O_BLOCK;
@@ -26,19 +28,22 @@ Block::Block(float hsizex,float hsizey,float x, float y){
 	sm = ScreenManager::getInstance();
 
 	/**********codigo Box2D***************/
+	//define a posição
 	bodydef.position.Set(x,y);
 
+	//cria a forma
 	bodyshape=new b2PolygonShape();
 	((b2PolygonShape*)bodyshape)->SetAsBox(hsizeX,hsizeY);
 
+	//cria o corpo usando as definições
 	body=NULL;
 	b2World * world = ((Level*)sm->getCurrentScreen())->getWorld();
 	body = world->CreateBody(&bodydef);
 
 	body->CreateFixture(bodyshape,0.0f);
+	
+	//usa o userdata para guardar um ponteiro no objecto body do Box2D (usado nas colisões)
 	body->SetUserData(this);
-
-
 	/**************************************/
 
 
@@ -47,7 +52,7 @@ Block::Block(float hsizex,float hsizey,float x, float y){
 	//sprite = lm->getSprite("ball");
 	//sprite->set_linear_filter(true);
 
-	//criar o collision outline
+	//criar o collision outline (colisões no clanlib , possivelmente sem uso)
 	coutline = CL_CollisionOutline("resources/box.png");
 	coutline.set_alignment(origin_center);
 
@@ -66,7 +71,10 @@ Block::~Block(void)
 	body=0;
 }
 
+///desenha o bloco
 void Block::draw(){
+
+	//TODO: usar sprite
 
 	CL_Rectf ground(CL_Sizef(hsizeX*2,hsizeY*2));
 
@@ -78,12 +86,14 @@ void Block::draw(){
 
 }
 
+///vai buscar os dados da simulação box2d e actualiza as corrdenadas
 void Block::handleevents(){
 
 	pX=body->GetPosition().x;
 	pY=body->GetPosition().y;
 	angle = body->GetAngle();
-	//por enquanto so para teste
+	
+	//por enquanto so para teste (colisões clanlib)
 	float screenratio=sm->getScreenRatio();
 
 	float scalex = screenratio*hsizeX /((float)coutline.get_width());

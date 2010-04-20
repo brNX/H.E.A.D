@@ -13,7 +13,8 @@ private:
 public:	
 	void draw();
 	void handleevents();
-	void setRadius(float r);
 	inline float getRadius(){return radius;}
+	inline void setRadius(float r){radius=r;}
+
 };
 

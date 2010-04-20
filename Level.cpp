@@ -3,7 +3,7 @@
 #include "Ball.h"
 #include "Block.h"
 
-
+///constantes da simulacao do Box2D
 // Prepare for simulation. Typically we use a time step of 1/60 of a
 // second (60Hz) and 10 iterations. This provides a high quality simulation
 // in most game scenarios.
@@ -24,6 +24,7 @@ Level::Level(void)
 	// Construct a world object, which will hold and simulate the rigid bodies.
 	world= new b2World(gravity, doSleep);
 
+	//inicializa o listener para contactos entre objectos no mundo
 	world->SetContactListener((b2ContactListener*)&listener);
 
 }
@@ -53,10 +54,13 @@ void Level::HandleEvents(){
 	// should know about this function.
 	world->ClearForces();
 
+	// percorre os objectos todos do nivel e chama handleevents
 	gameBall->handleevents();
 
 	for (unsigned int i=0;i<levelitems.size();i++){
 		levelitems[i]->handleevents();
+		
+		//codigo de deteccao de colisões do clanlib(em principio vamos usar o do box2d)
 		/*if(gameBall->getCollisionOutline()->collide(*(levelitems[i]->getCollisionOutline()))){
 			printf("sim\n");	
 		}else
@@ -66,6 +70,7 @@ void Level::HandleEvents(){
 
 }
 
+///draw :-p
 void Level::draw(){
 	gameBall->draw();
 
@@ -74,6 +79,7 @@ void Level::draw(){
 	}
 }
 
+///incializa os objectos do nivel
 void Level::setupLevel(){
 
 	//todo:carregar objectos de algum ficheiro ou assim
