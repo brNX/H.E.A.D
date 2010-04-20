@@ -1,5 +1,6 @@
 #include "Block.h"
 #include "LevelManager.h"
+#include "Level.h"
 
 Block::Block(void)
 {
@@ -10,6 +11,39 @@ Block::Block(void)
 	hsizeY=-1;
 	pX=0;
 	pY=0;
+}
+
+Block::Block(float hsizex,float hsizey,float x, float y){
+	
+	type = O_BLOCK;
+
+	pX=x;
+	pY=y;
+	hsizeX=hsizex;
+	hsizeY=hsizey;
+				
+	LevelManager * lm = LevelManager::getInstance();
+
+	/**********codigo Box2D***************/
+	bodydef.position.Set(x,y);
+
+	bodyshape=new b2PolygonShape();
+	((b2PolygonShape*)bodyshape)->SetAsBox(hsizeX,hsizeY);
+
+	body=NULL;
+	b2World * world = ((Level*)lm->getCurrentScreen())->getWorld();
+	body = world->CreateBody(&bodydef);
+
+	body->CreateFixture(bodyshape,0.0f);
+
+
+	/**************************************/
+
+
+	/***********codigo CLanlib***************/
+	//todo: usar sprite depois
+	//sprite = lm->getSprite("ball");
+	//sprite->set_linear_filter(true);
 }
 
 Block::~Block(void)
@@ -39,7 +73,6 @@ void Block::draw(){
 
 	//TODO: testar isto
 	lm->drawBox(ground.left+pX,ground.bottom+pY,ground.right+pX,ground.top+pY,CL_Colorf(0.5f,0.5f,0.5f));
-
 
 }
 
