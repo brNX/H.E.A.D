@@ -187,10 +187,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\LevelManager.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\PhysicalObject.cpp"
 				>
 			</File>
@@ -200,6 +196,10 @@
 			</File>
 			<File
 				RelativePath=".\Screen.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ScreenManager.cpp"
 				>
 			</File>
 			<File
@@ -233,10 +233,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\LevelManager.h"
-				>
-			</File>
-			<File
 				RelativePath=".\PhysicalObject.h"
 				>
 			</File>
@@ -246,6 +242,10 @@
 			</File>
 			<File
 				RelativePath=".\Screen.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ScreenManager.h"
 				>
 			</File>
 			<File
@@ -265,6 +265,10 @@
 		</Filter>
 		<File
 			RelativePath=".\ClassDiagram1.cd"
+			>
+		</File>
+		<File
+			RelativePath=".\ClassDiagram2.cd"
 			>
 		</File>
 	</Files>

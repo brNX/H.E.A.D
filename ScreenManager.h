@@ -6,16 +6,16 @@ class Screen;
 
 //TODO: fazer algo quando o tamanho do screen muda (usar slots e signals)
 
-class LevelManager
+class ScreenManager
 {
 public:
-	static LevelManager * getInstance();
+	static ScreenManager * getInstance();
 	void drawCurrentScreen();
 	CL_Sprite * getSprite(CL_String8 name);
 	void start();
 	void handleEvents();
 	
-	//funções inline do draw para ser mais rapido
+	//funï¿½ï¿½es inline do draw para ser mais rapido
 	inline void drawSprite(CL_Sprite * sprite,float x,float y)
 	{
 		sprite->draw(gc,x*screenratio,screensizey-(y*screenratio));
@@ -28,7 +28,7 @@ public:
 
 private:
 	
-	static LevelManager * lm_instance;
+	static ScreenManager * lm_instance;
 	
 	Screen * currentScreen;
 

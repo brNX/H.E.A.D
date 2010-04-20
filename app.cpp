@@ -40,13 +40,13 @@ int App::start(const std::vector<CL_String> &args)
 			CL_GraphicContext gc = window.get_gc();
 
 			//get instance do levelmanager
-			lm = LevelManager::getInstance();
+			sm = ScreenManager::getInstance();
 			
-			lm->setWindow(&window);
+			sm->setWindow(&window);
 
-			lm->setScreenRatio(DEFAULTSCREENRATIO);
+			sm->setScreenRatio(DEFAULTSCREENRATIO);
 
-			lm->start();
+			sm->start();
 
 			FramerateCounter frameratecounter;
 
@@ -64,7 +64,7 @@ int App::start(const std::vector<CL_String> &args)
 				// The four arguments are red, green, blue and alpha
 				gc.clear(CL_Colorf(0.0f,0.0f,0.2f));
 
-				lm->drawCurrentScreen();
+				sm->drawCurrentScreen();
 
 				CL_String fps = cl_format("%1 fps", frameratecounter.get_framerate());
 				fnt_clansoft.draw_text(gc, 20, 30, fps);
@@ -76,7 +76,7 @@ int App::start(const std::vector<CL_String> &args)
 				// This call processes user input and other events
 				CL_KeepAlive::process(0);
 
-				lm->handleEvents();
+				sm->handleEvents();
 
 				unsigned drawTime = CL_System::get_time() - startTime;
 				if(DESIRED_FRAME_TIME > drawTime)

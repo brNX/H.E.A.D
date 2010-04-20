@@ -1,5 +1,5 @@
 #include "Block.h"
-#include "LevelManager.h"
+#include "ScreenManager.h"
 #include "Level.h"
 
 Block::Block(void)
@@ -22,7 +22,7 @@ Block::Block(float hsizex,float hsizey,float x, float y){
 	hsizeX=hsizex;
 	hsizeY=hsizey;
 				
-	LevelManager * lm = LevelManager::getInstance();
+	ScreenManager * lm = ScreenManager::getInstance();
 
 	/**********codigo Box2D***************/
 	bodydef.position.Set(x,y);
@@ -65,14 +65,14 @@ void Block::draw(){
 	ground.translate(-ground.get_center().x,-ground.get_center().y);
 
 
-	LevelManager * lm = LevelManager::getInstance();
+	ScreenManager * sm = ScreenManager::getInstance();
 
 	// Now print the position and angle of the body.
 	b2Vec2 position = body->GetPosition();
 	float angle = body->GetAngle();
 
 	//TODO: testar isto
-	lm->drawBox(ground.left+pX,ground.bottom+pY,ground.right+pX,ground.top+pY,CL_Colorf(0.5f,0.5f,0.5f));
+	sm->drawBox(ground.left+pX,ground.bottom+pY,ground.right+pX,ground.top+pY,CL_Colorf(0.5f,0.5f,0.5f));
 
 }
 

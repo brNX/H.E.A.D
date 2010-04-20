@@ -1,5 +1,5 @@
 #include "Ball.h"
-#include "LevelManager.h"
+#include "ScreenManager.h"
 #include "Level.h"
 
 Ball::Ball(void)
@@ -20,7 +20,7 @@ Ball::Ball(float radius,float x,float y)
 	pX=x;
 	pY=y;
 
-	LevelManager * lm = LevelManager::getInstance();
+	ScreenManager * sm = ScreenManager::getInstance();
 
 	/**********codigo Box2D***************/
 	bodydef.type = b2_dynamicBody;
@@ -30,7 +30,7 @@ Ball::Ball(float radius,float x,float y)
 	((b2CircleShape*)bodyshape)->m_radius=radius;
 
 	body=NULL;
-	b2World * world = ((Level*)lm->getCurrentScreen())->getWorld();
+	b2World * world = ((Level*)sm->getCurrentScreen())->getWorld();
 	body = world->CreateBody(&bodydef);
 	
 	b2FixtureDef fd;
@@ -43,7 +43,7 @@ Ball::Ball(float radius,float x,float y)
 
 
 	/***********codigo CLanlib***************/
-	sprite = lm->getSprite("ball");
+	sprite = sm->getSprite("ball");
 	sprite->set_linear_filter(true);
 
 }
@@ -65,7 +65,7 @@ Ball::~Ball(void)
 
 void Ball::draw(){
 
-	LevelManager * lm = LevelManager::getInstance();
+	ScreenManager * lm = ScreenManager::getInstance();
 
 	// Now print the position and angle of the body.
 	b2Vec2 position = body->GetPosition();

@@ -8,7 +8,7 @@
 #ifndef APP_H_
 #define APP_H_
 
-#include "LevelManager.h"
+#include "ScreenManager.h"
 
 // This is the Application class (That is instantiated by the Program Class)
 class App
@@ -20,7 +20,7 @@ private:
 	void on_window_close();
 private:
 	bool quit;
-	LevelManager * lm;
+	ScreenManager * sm;
 };
 
 
