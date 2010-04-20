@@ -49,11 +49,7 @@ Ball::Ball(float radius,float x,float y)
 
 	//criar o collision outline
 	coutline = CL_CollisionOutline("resources/ballc.png");
-	//coutline.set_translation(-coutline.get_width()/2,-coutline.get_height()/2);
-	//coutline.set_translation(-25,-25);
-	
-	//todo: tentar perceber esta treta
-	coutline.set_rotation_hotspot(origin_top_left,30,30);
+	coutline.set_alignment(origin_center);
 }
 
 Ball::~Ball(void)
@@ -86,7 +82,7 @@ void Ball::draw(){
 	coutline.set_angle(CL_Angle::from_radians(-angle));
 
 	sm->drawSprite(sprite,position.x,position.y);
-	sm->drawCoutline(&coutline,position.x-radius,position.y+radius);
+	sm->drawCoutline(&coutline,position.x,position.y);
 
 }
 
