@@ -4,6 +4,7 @@
 
 Block::Block(void)
 {
+	sm = ScreenManager::getInstance();
 	type = O_INVALID;
 	bodyshape=0;
 	body=0;
@@ -22,7 +23,7 @@ Block::Block(float hsizex,float hsizey,float x, float y){
 	hsizeX=hsizex;
 	hsizeY=hsizey;
 				
-	ScreenManager * lm = ScreenManager::getInstance();
+	sm = ScreenManager::getInstance();
 
 	/**********codigo Box2D***************/
 	bodydef.position.Set(x,y);
@@ -31,7 +32,7 @@ Block::Block(float hsizex,float hsizey,float x, float y){
 	((b2PolygonShape*)bodyshape)->SetAsBox(hsizeX,hsizeY);
 
 	body=NULL;
-	b2World * world = ((Level*)lm->getCurrentScreen())->getWorld();
+	b2World * world = ((Level*)sm->getCurrentScreen())->getWorld();
 	body = world->CreateBody(&bodydef);
 
 	body->CreateFixture(bodyshape,0.0f);
@@ -44,6 +45,10 @@ Block::Block(float hsizex,float hsizey,float x, float y){
 	//todo: usar sprite depois
 	//sprite = lm->getSprite("ball");
 	//sprite->set_linear_filter(true);
+
+	//criar o collision outline
+	coutline = CL_CollisionOutline("resources/box.png");
+	coutline.set_alignment(origin_center);
 
 
 
@@ -66,19 +71,24 @@ void Block::draw(){
 
 	//centrar o rectangulo
 	ground.translate(-ground.get_center().x,-ground.get_center().y);
-
-
-	ScreenManager * sm = ScreenManager::getInstance();
-
-	// Now print the position and angle of the body.
-	b2Vec2 position = body->GetPosition();
-	float angle = body->GetAngle();
-
-	//TODO: testar isto
 	sm->drawBox(ground.left+pX,ground.bottom+pY,ground.right+pX,ground.top+pY,CL_Colorf(0.5f,0.5f,0.5f));
+	
+	sm->drawCoutline(&coutline,pX,pY);
 
 }
 
 void Block::handleevents(){
+
+	pX=body->GetPosition().x;
+	pY=body->GetPosition().y;
+	angle = body->GetAngle();
+	//por enquanto so para teste
+	float screenratio=sm->getScreenRatio();
+
+	float scalex = screenratio*hsizeX /((float)coutline.get_width());
+	float scaley = screenratio*hsizeY /((float)coutline.get_height());
+	coutline.set_scale(scalex*2,scaley*2);
+
+	coutline.set_translation(pX*screenratio,((float)sm->getScreensizey())-(pY*screenratio));
 
 }

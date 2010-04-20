@@ -29,7 +29,6 @@ public:
 	
 	inline void drawCoutline(CL_CollisionOutline * coutline,float x,float y)
 	{
-		coutline->set_translation(x*screenratio,screensizey-(y*screenratio));
 		coutline->draw(0,0,CL_Colorf(0.0f,0.0f,1.0f),gc);
 	}
 
@@ -43,7 +42,7 @@ private:
 	CL_GraphicContext gc;
 	CL_DisplayWindow * window;
 	
-	int screenratio;
+	float screenratio;
 	int screensizey;
 
 public:
@@ -55,7 +54,8 @@ public:
 	}
 	
 	inline Screen * getCurrentScreen(){return currentScreen;}
-	inline void setScreenRatio(int ratio){screenratio=ratio;}
-	inline int getScreenRatio(){return screenratio;}
+	inline void setScreenRatio(float ratio){screenratio=ratio;}
+	inline float getScreenRatio(){return screenratio;}
+	inline int getScreensizey(){return screensizey;}
 
 };

@@ -11,6 +11,7 @@ Ball::Ball(void)
 	radius=-1;
 	pX=0;
 	pY=0;
+	sm = ScreenManager::getInstance();
 }
 
 Ball::Ball(float radius,float x,float y)
@@ -20,7 +21,7 @@ Ball::Ball(float radius,float x,float y)
 	pX=x;
 	pY=y;
 
-	ScreenManager * sm = ScreenManager::getInstance();
+	sm = ScreenManager::getInstance();
 
 	/**********codigo Box2D***************/
 	bodydef.type = b2_dynamicBody;
@@ -69,25 +70,28 @@ Ball::~Ball(void)
 
 void Ball::draw(){
 
-	ScreenManager * sm = ScreenManager::getInstance();
-
-	// Now print the position and angle of the body.
-	b2Vec2 position = body->GetPosition();
-	float angle = body->GetAngle();
-
-	float scale = sm->getScreenRatio() /(float)(sprite->get_height());
-	sprite->set_angle(CL_Angle::from_radians(-angle));
-	sprite->set_scale(scale*2,scale*2);
-	coutline.set_scale(scale*2,scale*2);
-	coutline.set_angle(CL_Angle::from_radians(-angle));
-
-	sm->drawSprite(sprite,position.x,position.y);
-	sm->drawCoutline(&coutline,position.x,position.y);
+	sm->drawSprite(sprite,pX,pY);
+	sm->drawCoutline(&coutline,pX,pY);
 
 }
 
 void Ball::handleevents(){
 
+	pX=body->GetPosition().x;
+	pY=body->GetPosition().y;
+	angle = body->GetAngle();
+
+	float scale = sm->getScreenRatio() /(float)(sprite->get_height());
+	
+	sprite->set_angle(CL_Angle::from_radians(-angle));
+	sprite->set_scale(scale*2,scale*2);
+	
+	coutline.set_scale(scale*2,scale*2);
+	coutline.set_angle(CL_Angle::from_radians(-angle));
+
+	float screenratio=sm->getScreenRatio();
+	
+	coutline.set_translation(pX*screenratio,sm->getScreensizey()-(pY*screenratio));
 }
 
 void Ball::setRadius(float r){

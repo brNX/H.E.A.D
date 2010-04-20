@@ -50,6 +50,18 @@ void Level::HandleEvents(){
 	// should know about this function.
 	world->ClearForces();
 
+	gameBall->handleevents();
+
+	for (unsigned int i=0;i<levelitems.size();i++){
+		levelitems[i]->handleevents();
+		if(gameBall->getCollisionOutline()->collide(*(levelitems[i]->getCollisionOutline()))){
+			printf("sim\n");	
+		}else
+			printf("não\n");
+	}
+
+
+
 }
 
 void Level::draw(){
@@ -66,5 +78,6 @@ void Level::setupLevel(){
 
 	gameBall = new Ball(1.0f,3.0f,15.0f);
 	levelitems.push_back(new Block(20.0f,10.0f,0.0f,-9.0f));
+	levelitems.push_back(new Block(2.0f,1.0f,20.0f,2.0f));
 
 }

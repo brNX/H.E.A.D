@@ -2,6 +2,7 @@
 
 #include <ClanLib/display.h>
 #include <Box2D/Box2D.h>
+#include "ScreenManager.h"
 
 enum EObjectType
 {
@@ -19,13 +20,20 @@ public:
 	virtual ~PhysicalObject(void);
 protected:
 	EObjectType type;
+	
 	CL_Sprite * sprite;
 	CL_CollisionOutline coutline;
+	
 	b2Body * body;
 	b2BodyDef bodydef;
 	b2Shape * bodyshape;
 	b2FixtureDef fixturedef;
+	
 	float pX,pY;
+	float angle;
+
+	ScreenManager * sm;
+
 public:
 	virtual void draw();
 	virtual void handleevents();
