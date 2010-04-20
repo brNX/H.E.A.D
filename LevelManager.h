@@ -12,6 +12,8 @@ public:
 	static LevelManager * getInstance();
 	void drawCurrentScreen();
 	CL_Sprite * getSprite(CL_String8 name);
+	void start();
+	void handleEvents();
 	
 	//funções inline do draw para ser mais rapido
 	inline void drawSprite(CL_Sprite * sprite,float x,float y)
@@ -26,13 +28,11 @@ public:
 
 private:
 	
-	LevelManager();
 	static LevelManager * lm_instance;
 	
 	Screen * currentScreen;
-	int counter;
 
-	CL_ResourceManager * resources;
+	CL_ResourceManager resources;
 	CL_GraphicContext gc;
 	CL_DisplayWindow * window;
 	
@@ -49,7 +49,6 @@ public:
 	}
 	
 	inline Screen * getCurrentScreen(){return currentScreen;}
-	inline CL_ResourceManager * getResourceManager(){return resources;}
 	inline void setScreenRatio(int ratio){screenratio=ratio;}
 	inline int getScreenRatio(){return screenratio;}
 

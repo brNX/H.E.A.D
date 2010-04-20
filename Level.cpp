@@ -3,6 +3,13 @@
 #include "Ball.h"
 #include "Block.h"
 
+// Prepare for simulation. Typically we use a time step of 1/60 of a
+// second (60Hz) and 10 iterations. This provides a high quality simulation
+// in most game scenarios.
+#define timeStep 1.0f / 60.0f
+#define velocityIterations  6
+#define positionIterations  2
+
 
 Level::Level(void)
 {
@@ -34,6 +41,15 @@ Level::~Level(void)
 
 void Level::HandleEvents(){
 	//todo: logica do nivel e input output
+
+	// Instruct the world to perform a single step of simulation.
+	// It is generally best to keep the time step and iterations fixed.
+	world->Step(timeStep, velocityIterations, positionIterations);
+
+	// Clear applied body forces. We didn't apply any forces, but you
+	// should know about this function.
+	world->ClearForces();
+
 }
 
 void Level::draw(){

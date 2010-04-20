@@ -46,14 +46,12 @@ int App::start(const std::vector<CL_String> &args)
 
 			lm->setScreenRatio(DEFAULTSCREENRATIO);
 
+			lm->start();
+
 			FramerateCounter frameratecounter;
 
 			CL_Font fnt_clansoft;
 			fnt_clansoft = CL_Font(gc, L"Tahoma", 32);
-
-			//variaveis para o tamanho da janela
-			//int tamanhoxmax=window.get_geometry().right-window.get_geometry().left;
-			int tamanhoymax=window.get_geometry().bottom-window.get_geometry().top;
 
 			// Run until someone presses escape
 			int i = 0;
@@ -66,6 +64,8 @@ int App::start(const std::vector<CL_String> &args)
 				// The four arguments are red, green, blue and alpha
 				gc.clear(CL_Colorf(0.0f,0.0f,0.2f));
 
+				lm->drawCurrentScreen();
+
 				CL_String fps = cl_format("%1 fps", frameratecounter.get_framerate());
 				fnt_clansoft.draw_text(gc, 20, 30, fps);
 
@@ -76,11 +76,14 @@ int App::start(const std::vector<CL_String> &args)
 				// This call processes user input and other events
 				CL_KeepAlive::process(0);
 
+				lm->handleEvents();
+
 				unsigned drawTime = CL_System::get_time() - startTime;
 				if(DESIRED_FRAME_TIME > drawTime)
 					CL_System::sleep( DESIRED_FRAME_TIME - drawTime );
 				
 				frameratecounter.frame_shown();
+			
 
 			}
 	}
