@@ -16,7 +16,7 @@ Ball::Ball(void)
 Ball::Ball(float radius,float x,float y)
 {
 	type = O_BALL;
-	radius=radius;
+	this->radius=radius;
 	pX=x;
 	pY=y;
 
@@ -43,9 +43,17 @@ Ball::Ball(float radius,float x,float y)
 
 
 	/***********codigo CLanlib***************/
+	//criar a sprite
 	sprite = sm->getSprite("ball");
 	sprite->set_linear_filter(true);
 
+	//criar o collision outline
+	coutline = CL_CollisionOutline("resources/ballc.png");
+	//coutline.set_translation(-coutline.get_width()/2,-coutline.get_height()/2);
+	//coutline.set_translation(-25,-25);
+	
+	//todo: tentar perceber esta treta
+	coutline.set_rotation_hotspot(origin_top_left,30,30);
 }
 
 Ball::~Ball(void)
@@ -65,16 +73,20 @@ Ball::~Ball(void)
 
 void Ball::draw(){
 
-	ScreenManager * lm = ScreenManager::getInstance();
+	ScreenManager * sm = ScreenManager::getInstance();
 
 	// Now print the position and angle of the body.
 	b2Vec2 position = body->GetPosition();
 	float angle = body->GetAngle();
 
-	float scale = lm->getScreenRatio() /(float)(sprite->get_height());
+	float scale = sm->getScreenRatio() /(float)(sprite->get_height());
 	sprite->set_angle(CL_Angle::from_radians(-angle));
 	sprite->set_scale(scale*2,scale*2);
-	lm->drawSprite(sprite,position.x,position.y);
+	coutline.set_scale(scale*2,scale*2);
+	coutline.set_angle(CL_Angle::from_radians(-angle));
+
+	sm->drawSprite(sprite,position.x,position.y);
+	sm->drawCoutline(&coutline,position.x-radius,position.y+radius);
 
 }
 

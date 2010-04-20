@@ -31,4 +31,5 @@ public:
 	virtual void handleevents();
 	EObjectType getType();
 	void setPosition(float x , float y);
+	inline CL_CollisionOutline * getCollisionOutline(){return &coutline;}
 };

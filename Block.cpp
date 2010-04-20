@@ -44,6 +44,9 @@ Block::Block(float hsizex,float hsizey,float x, float y){
 	//todo: usar sprite depois
 	//sprite = lm->getSprite("ball");
 	//sprite->set_linear_filter(true);
+
+
+
 }
 
 Block::~Block(void)
