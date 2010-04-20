@@ -179,6 +179,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\BallContactListener.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Block.cpp"
 				>
 			</File>
@@ -218,6 +222,10 @@
 			</File>
 			<File
 				RelativePath=".\Ball.h"
+				>
+			</File>
+			<File
+				RelativePath=".\BallContactListener.h"
 				>
 			</File>
 			<File

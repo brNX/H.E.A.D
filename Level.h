@@ -2,6 +2,7 @@
 #include "Screen.h"
 #include <Vector>
 #include <Box2D/Box2D.h>
+#include "BallContactListener.h"
 
 using namespace std;
 
@@ -22,4 +23,5 @@ private:
 	Ball * gameBall;
 	vector<PhysicalObject*> levelitems;
 	b2World * world;
+	BallContactListener listener;
 };

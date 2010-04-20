@@ -3,6 +3,7 @@
 #include "Ball.h"
 #include "Block.h"
 
+
 // Prepare for simulation. Typically we use a time step of 1/60 of a
 // second (60Hz) and 10 iterations. This provides a high quality simulation
 // in most game scenarios.
@@ -22,6 +23,8 @@ Level::Level(void)
 
 	// Construct a world object, which will hold and simulate the rigid bodies.
 	world= new b2World(gravity, doSleep);
+
+	world->SetContactListener((b2ContactListener*)&listener);
 
 }
 
@@ -54,12 +57,11 @@ void Level::HandleEvents(){
 
 	for (unsigned int i=0;i<levelitems.size();i++){
 		levelitems[i]->handleevents();
-		if(gameBall->getCollisionOutline()->collide(*(levelitems[i]->getCollisionOutline()))){
+		/*if(gameBall->getCollisionOutline()->collide(*(levelitems[i]->getCollisionOutline()))){
 			printf("sim\n");	
 		}else
-			printf("não\n");
+			printf("nao\n");*/
 	}
-
 
 
 }
