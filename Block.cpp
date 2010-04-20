@@ -36,6 +36,7 @@ Block::Block(float hsizex,float hsizey,float x, float y){
 	body = world->CreateBody(&bodydef);
 
 	body->CreateFixture(bodyshape,0.0f);
+	body->SetUserData(this);
 
 
 	/**************************************/

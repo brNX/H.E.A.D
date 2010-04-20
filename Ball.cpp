@@ -40,6 +40,8 @@ Ball::Ball(float radius,float x,float y)
 	fd.friction = 0.3f;
 
 	body->CreateFixture(&fd);
+	body->SetUserData(this);
+
 	/**************************************/
 
 

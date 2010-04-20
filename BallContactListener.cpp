@@ -1,4 +1,5 @@
 #include "BallContactListener.h"
+#include "PhysicalObject.h"
 
 void BallContactListener::BeginContact(b2Contact* contact){
 	printf("touch\n");
@@ -9,6 +10,13 @@ void BallContactListener::BeginContact(b2Contact* contact){
 
 	printf("PosA x:%f y:%f\n",posA.x,posA.y);
 	printf("PosB x:%f y:%f\n",posB.x,posB.y);
+
+
+	PhysicalObject * objA = (PhysicalObject *) bodyA->GetUserData();
+	PhysicalObject * objB = (PhysicalObject *) bodyB->GetUserData();
+
+	printf("obj A type: %d\n",objA->getType());
+	printf("obj B type: %d\n",objB->getType());
 }
 
 /// Called when two fixtures cease to touch.
