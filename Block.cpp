@@ -74,7 +74,7 @@ Block::~Block(void)
 ///desenha o bloco
 void Block::draw(){
 
-	//TODO: usar sprite
+	//TODO: usar sprite(s)
 
 	CL_Rectf ground(CL_Sizef(hsizeX*2,hsizeY*2));
 
@@ -82,7 +82,7 @@ void Block::draw(){
 	ground.translate(-ground.get_center().x,-ground.get_center().y);
 	sm->drawBox(ground.left+pX,ground.bottom+pY,ground.right+pX,ground.top+pY,CL_Colorf(0.5f,0.5f,0.5f));
 	
-	sm->drawCoutline(&coutline,pX,pY);
+	//sm->drawCoutline(&coutline,pX,pY);
 
 }
 

@@ -83,7 +83,7 @@ void Ball::draw(){
 	sm->drawSprite(sprite,pX,pY);
 
 	//outline de debug
-	sm->drawCoutline(&coutline,pX,pY);
+	//sm->drawCoutline(&coutline,pX,pY);
 
 }
 
