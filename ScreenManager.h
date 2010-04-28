@@ -1,6 +1,6 @@
 #pragma once
-#include <ClanLib/Core.h>
-#include <ClanLib/Display.h>
+#include <ClanLib/core.h>
+#include <ClanLib/display.h>
 
 class Screen;
 

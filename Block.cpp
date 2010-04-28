@@ -2,7 +2,7 @@
 #include "ScreenManager.h"
 #include "Level.h"
 
-///contrutor standard do block, mete tipo a invalido para depois não ser usado
+///contrutor standard do block, mete tipo a invalido para depois nï¿½o ser usado
 Block::Block(void)
 {
 	sm = ScreenManager::getInstance();
@@ -28,21 +28,21 @@ Block::Block(float hsizex,float hsizey,float x, float y){
 	sm = ScreenManager::getInstance();
 
 	/**********codigo Box2D***************/
-	//define a posição
+	//define a posiï¿½ï¿½o
 	bodydef.position.Set(x,y);
 
 	//cria a forma
 	bodyshape=new b2PolygonShape();
 	((b2PolygonShape*)bodyshape)->SetAsBox(hsizeX,hsizeY);
 
-	//cria o corpo usando as definições
+	//cria o corpo usando as definiï¿½ï¿½es
 	body=NULL;
 	b2World * world = ((Level*)sm->getCurrentScreen())->getWorld();
 	body = world->CreateBody(&bodydef);
 
 	body->CreateFixture(bodyshape,0.0f);
 	
-	//usa o userdata para guardar um ponteiro no objecto body do Box2D (usado nas colisões)
+	//usa o userdata para guardar um ponteiro no objecto body do Box2D (usado nas colisï¿½es)
 	body->SetUserData(this);
 	/**************************************/
 
@@ -52,7 +52,7 @@ Block::Block(float hsizex,float hsizey,float x, float y){
 	//sprite = lm->getSprite("ball");
 	//sprite->set_linear_filter(true);
 
-	//criar o collision outline (colisões no clanlib , possivelmente sem uso)
+	//criar o collision outline (colisï¿½es no clanlib , possivelmente sem uso)
 	coutline = CL_CollisionOutline("resources/box.png");
 	coutline.set_alignment(origin_center);
 
@@ -80,20 +80,21 @@ void Block::draw(){
 
 	//centrar o rectangulo
 	ground.translate(-ground.get_center().x,-ground.get_center().y);
-	sm->drawBox(ground.left+pX,ground.bottom+pY,ground.right+pX,ground.top+pY,CL_Colorf(0.5f,0.5f,0.5f));
+	CL_Colorf color(0.5f,0.5f,0.5f);
+	sm->drawBox(ground.left+pX,ground.bottom+pY,ground.right+pX,ground.top+pY,color);
 	
 	//sm->drawCoutline(&coutline,pX,pY);
 
 }
 
-///vai buscar os dados da simulação box2d e actualiza as corrdenadas
+///vai buscar os dados da simulaï¿½ï¿½o box2d e actualiza as corrdenadas
 void Block::handleevents(){
 
 	pX=body->GetPosition().x;
 	pY=body->GetPosition().y;
 	angle = body->GetAngle();
 	
-	//por enquanto so para teste (colisões clanlib)
+	//por enquanto so para teste (colisï¿½es clanlib)
 	float screenratio=sm->getScreenRatio();
 
 	float scalex = screenratio*hsizeX /((float)coutline.get_width());

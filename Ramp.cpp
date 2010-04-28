@@ -2,6 +2,7 @@
 #include "Level.h"
 #include "ScreenManager.h"
 #include "triangulate.h"
+#include <stdio.h>
 
 Ramp::Ramp(void)
 {
@@ -32,10 +33,10 @@ Ramp::Ramp(float x, float y)
 
 	/**********codigo Box2D***************/
 
-	//define o tipo e a posição 
+	//define o tipo e a posiï¿½ï¿½o 
 	bodydef.position.Set(x,y);
 
-	//cria o corpo usando as definições
+	//cria o corpo usando as definiï¿½ï¿½es
 	body=NULL;
 	b2World * world = ((Level*)sm->getCurrentScreen())->getWorld();
 	body = world->CreateBody(&bodydef);
@@ -106,7 +107,7 @@ Ramp::Ramp(float x, float y)
 		printf("Triangle %d => (%f,%f) (%f,%f) (%f,%f)\n",i+1,vect[0].x,vect[0].y,vect[1].x,vect[1].y,vect[2].x,vect[2].y);
 	}
 
-	//usa o userdata para guardar um ponteiro no objecto body do Box2D (usado nas colisões)
+	//usa o userdata para guardar um ponteiro no objecto body do Box2D (usado nas colisï¿½es)
 	body->SetUserData(this);
 
 	/**************************************/

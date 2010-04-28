@@ -1,5 +1,5 @@
 #pragma once
-#include "physicalobject.h"
+#include "PhysicalObject.h"
 
 class Trampolim :
 	public PhysicalObject

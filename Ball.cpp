@@ -14,7 +14,7 @@ Ball::Ball(void)
 	sm = ScreenManager::getInstance();
 }
 
-///construtor com posição e raio
+///construtor com posiï¿½ï¿½o e raio
 Ball::Ball(float radius,float x,float y)
 {
 	type = O_BALL;
@@ -26,16 +26,16 @@ Ball::Ball(float radius,float x,float y)
 
 	/**********codigo Box2D***************/
 
-	//define o tipo e a posição 
+	//define o tipo e a posiÃ§Ã£o
 	bodydef.type = b2_dynamicBody;
 	bodydef.position.Set(x,y);
-	bodydef.linearVelocity=b2Vec2(0.0f,-17.0f);
+	bodydef.linearVelocity=b2Vec2(0.0f,-5.0f);
 
 	//define a forma
 	bodyshape=new b2CircleShape();
 	((b2CircleShape*)bodyshape)->m_radius=radius;
 
-	//cria o corpo usando as definições
+	//cria o corpo usando as definiï¿½ï¿½es
 	body=NULL;
 	b2World * world = ((Level*)sm->getCurrentScreen())->getWorld();
 	body = world->CreateBody(&bodydef);
@@ -47,7 +47,7 @@ Ball::Ball(float radius,float x,float y)
 
 	body->CreateFixture(&fd);
 
-	//usa o userdata para guardar um ponteiro no objecto body do Box2D (usado nas colisões)
+	//usa o userdata para guardar um ponteiro no objecto body do Box2D (usado nas colisï¿½es)
 	body->SetUserData(this);
 
 	/**************************************/
@@ -58,7 +58,7 @@ Ball::Ball(float radius,float x,float y)
 	sprite = sm->getSprite("ball");
 	sprite->set_linear_filter(true);
 
-	//criar o collision outline (colisões no clanlib , possivelmente sem uso)
+	//criar o collision outline (colisï¿½es no clanlib , possivelmente sem uso)
 	coutline = CL_CollisionOutline("resources/ballc.png");
 	coutline.set_alignment(origin_center);
 }
@@ -88,7 +88,7 @@ void Ball::draw(){
 
 }
 
-///vai buscar os dados da simulação box2d e actualiza as corrdenadas
+///vai buscar os dados da simulaï¿½ï¿½o box2d e actualiza as corrdenadas
 void Ball::handleevents(){
 
 	pX=body->GetPosition().x;

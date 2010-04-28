@@ -1,5 +1,6 @@
 #include "BallContactListener.h"
 #include "PhysicalObject.h"
+#include <stdio.h>
 
 //quando 2 objectos colidem pela primeira vez
 void BallContactListener::BeginContact(b2Contact* contact){

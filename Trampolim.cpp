@@ -2,6 +2,7 @@
 #include "ScreenManager.h"
 #include "Level.h"
 #include "triangulate.h"
+#include <stdio.h>
 
 Trampolim::Trampolim(void)
 {
@@ -32,11 +33,12 @@ Trampolim::Trampolim(float x, float y)
 
 	/**********codigo Box2D***************/
 
-	//define o tipo e a posição 
+	//define o tipo e a posiï¿½ï¿½o 
 	bodydef.position.Set(x,y);
 	bodydef.type = b2_kinematicBody;
+	bodydef.linearVelocity=b2Vec2(0.0f,0.4f);
 
-	//cria o corpo usando as definições
+	//cria o corpo usando as definiï¿½ï¿½es
 	body=NULL;
 	b2World * world = ((Level*)sm->getCurrentScreen())->getWorld();
 	body = world->CreateBody(&bodydef);
@@ -44,6 +46,7 @@ Trampolim::Trampolim(float x, float y)
 	b2FixtureDef fd;
 	fd.density = 1.0f;
 	fd.friction = 0.3f;
+	fd.restitution = 3.0f;
 
 	//uso do triangulate.cpp -> pega num poligono e divide em triangulos
 	Vector2dVector a;
@@ -88,7 +91,8 @@ Trampolim::Trampolim(float x, float y)
 		printf("Triangle %d => (%f,%f) (%f,%f) (%f,%f)\n",i+1,vect[0].x,vect[0].y,vect[1].x,vect[1].y,vect[2].x,vect[2].y);
 	}
 
-	//usa o userdata para guardar um ponteiro no objecto body do Box2D (usado nas colisões)
+
+	//usa o userdata para guardar um ponteiro no objecto body do Box2D (usado nas colisï¿½es)
 	body->SetUserData(this);
 
 	/**************************************/
