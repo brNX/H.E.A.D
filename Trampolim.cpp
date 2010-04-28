@@ -36,7 +36,7 @@ Trampolim::Trampolim(float x, float y)
 	//define o tipo e a posi��o 
 	bodydef.position.Set(x,y);
 	bodydef.type = b2_kinematicBody;
-	bodydef.linearVelocity=b2Vec2(0.0f,0.4f);
+	//bodydef.linearVelocity=b2Vec2(0.0f,0.4f);
 
 	//cria o corpo usando as defini��es
 	body=NULL;
@@ -117,6 +117,7 @@ void Trampolim::handleevents()
 	pX=body->GetPosition().x;
 	pY=body->GetPosition().y;
 	angle = body->GetAngle();
+	body->SetTransform(body->GetPosition(),angle+M_PI/2160.0);
 
 	float screenratio=sm->getScreenRatio();
 
