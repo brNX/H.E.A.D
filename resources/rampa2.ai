@@ -1,0 +1,99 @@
+%!PS-Adobe-3.0
+%%Creator: (CINEMA 4D Sketch and Toon 1.20.01)
+%Title: (rampa2.ai)
+%%DocumentProcSets: Adobe_Illustrator_1.1 0 0
+%%BoundingBox: 0 0 319 239
+%%HiResBoundingBox: 0 0 319 239
+%AI3_Cropmarks: 0 0 319 239
+%%DocumentPreview: None
+%%EndComments
+%%EndProlog
+%%BeginSetup
+Adobe_Illustrator_1.1 begin
+n
+%%EndSetup
+0 i 0 J 0 j 1 w 4 M []0 d
+[]0 d
+0.000000 0.000000 0.000000 1.000000 K
+0.000000 w
+%AI5_BeginLayer
+%_ 1 1 1 1 0 0 4 0 0 0 Lb
+%_ (Loft NURBS) Ln
+%AI5_BeginLayer
+%_ 1 1 1 1 0 0 4 0 0 0 Lb
+%_ (Surface) Ln
+u
+%_ 0.000 1 0.000 0.000 0.000 Xy
+0.5 w
+U
+%_ LB
+%AI5_BeginLayer
+%_ 1 1 1 1 0 0 4 0 0 0 Lb
+%_ (Layer(0)) Ln
+%AI5_BeginLayer
+%_ 1 1 1 1 0 0 4 0 0 0 Lb
+%_ (Lines) Ln
+%_ 0.000 1 0.000 0.000 0.000 Xy
+1 w
+0 0 0 1 K
+1 J
+1 j
+[] 0 d
+u
+101.492 205.748 m
+101.492 52.3078 L
+S
+101.492 52.3078 m
+226.455 52.3078 L
+S
+226.455 52.3078 m
+224.833 101.706 L
+S
+114.082 153.93 m
+111.971 183.508 L
+S
+117.238 126.408 m
+114.082 153.93 L
+S
+111.971 183.508 m
+110.656 205.748 L
+S
+195.408 80.1032 m
+177.671 72.8568 L
+S
+153.418 73.5803 m
+137.606 82.9235 L
+S
+127.065 94.8618 m
+120.12 110.139 L
+S
+120.12 110.139 m
+117.238 126.408 L
+S
+137.606 82.9235 m
+127.065 94.8618 L
+S
+219.133 94.7538 m
+206.738 85.7968 L
+S
+166.491 71.5687 m
+153.418 73.5803 L
+S
+206.738 85.7968 m
+195.408 80.1032 L
+S
+177.671 72.8568 m
+166.491 71.5687 L
+S
+110.656 205.748 m
+101.492 205.748 L
+S
+224.833 101.706 m
+219.133 94.7538 L
+S
+U
+%_ LB
+%_ LB
+%_ LB
+%%Trailer
+%%EOF

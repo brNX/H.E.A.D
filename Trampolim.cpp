@@ -1,13 +1,13 @@
-#include "Ramp.h"
-#include "Level.h"
+#include "Trampolim.h"
 #include "ScreenManager.h"
+#include "Level.h"
 #include "triangulate.h"
 
-Ramp::Ramp(void)
+Trampolim::Trampolim(void)
 {
 }
 
-Ramp::~Ramp(void)
+Trampolim::~Trampolim(void)
 {
 	if(bodyshape)
 		delete bodyshape;
@@ -22,9 +22,9 @@ Ramp::~Ramp(void)
 	sprite=0;
 }
 
-Ramp::Ramp(float x, float y)
+Trampolim::Trampolim(float x, float y)
 {
-	type = O_RAMP;
+	type = O_TRAMPOLIN;
 	pX=x;
 	pY=y;
 
@@ -34,57 +34,37 @@ Ramp::Ramp(float x, float y)
 
 	//define o tipo e a posição 
 	bodydef.position.Set(x,y);
+	bodydef.type = b2_kinematicBody;
 
 	//cria o corpo usando as definições
 	body=NULL;
 	b2World * world = ((Level*)sm->getCurrentScreen())->getWorld();
 	body = world->CreateBody(&bodydef);
 
+	b2FixtureDef fd;
+	fd.density = 1.0f;
+	fd.friction = 0.3f;
+
 	//uso do triangulate.cpp -> pega num poligono e divide em triangulos
 	Vector2dVector a;
+
+	a.insert(a.begin(),b2Vec2(5.0f,	0.0f));	
+	a.insert( a.begin(),b2Vec2(0.0f,	0.0f));	
+	a.insert( a.begin(),b2Vec2(0.0f,	2.0f));	
+	a.insert( a.begin(),b2Vec2(1.396f,	1.636f));	
+	a.insert( a.begin(),b2Vec2(3.324f,	1.36f));	
+	a.insert( a.begin(),b2Vec2(5.0f,	1.251f	));
+	a.insert( a.begin(),b2Vec2(6.676f,	1.36f	));
+	a.insert( a.begin(),b2Vec2(8.604f,	1.636f));	
+	a.insert(a.begin(), b2Vec2(10.0f,	2.0f));	
+	a.insert(a.begin(), b2Vec2(10.0f,	0.0f));	
 	
-	/*a.push_back( b2Vec2( 0.6f,3.0f));	
-	a.push_back( b2Vec2(0.0f,3.0f));
-	a.push_back( b2Vec2(0.0f,0.0f));
-	a.push_back( b2Vec2(3.0f,0.0f));	
-	a.push_back( b2Vec2(3.0f,0.6f));
-	a.push_back( b2Vec2(2.768f,0.612f));	
-	a.push_back( b2Vec2(2.535f,0.645f));	
-	a.push_back( b2Vec2(2.3f,0.705f));
-	a.push_back( b2Vec2(2.078f,0.785f));	
-	a.push_back( b2Vec2(1.87f,0.882f));	
-	a.push_back( b2Vec2(1.672f,0.998f));
-	a.push_back( b2Vec2(1.477f,1.142f));	
-	a.push_back( b2Vec2(1.297f,1.307f));
-	a.push_back( b2Vec2(1.143f,1.475f));
-	a.push_back( b2Vec2(1.0f,1.664f	));
-	a.push_back( b2Vec2(0.878f,1.869f));
-	a.push_back( b2Vec2(0.776f,2.087f));	
-	a.push_back( b2Vec2(0.695f,2.311f));	
-	a.push_back( b2Vec2(0.635f,2.547f));	
-	a.push_back( b2Vec2(0.6f,2.8f));*/
-
-	a.push_back( b2Vec2(0.358f,	6.0f));	
-	a.push_back( b2Vec2(0.0f,	6.0f));	
-	a.push_back( b2Vec2(0.0f,	0.0f));
-	a.push_back( b2Vec2(4.886f,	0.0f));	
-	a.push_back( b2Vec2(4.823f,	1.932f));	
-	a.push_back( b2Vec2(4.115f,	1.31f));
-	a.push_back( b2Vec2(3.672f,	1.087f));
-	a.push_back( b2Vec2(2.979f,	0.804f));
-	a.push_back( b2Vec2(2.542f,	0.753f));	
-	a.push_back( b2Vec2(2.031f,	0.832f));	
-	a.push_back( b2Vec2(1.412f,	1.197f));
-	a.push_back( b2Vec2(1.0f,	1.664f));
-	a.push_back( b2Vec2(0.728f,	2.261f));	
-	a.push_back( b2Vec2(0.616f,	2.898f));	
-	a.push_back( b2Vec2(0.492f,	3.974f));	
-	a.push_back( b2Vec2(0.41f,	5.13f));	
-
 	Vector2dVector result;
 
 	//  Invoke the triangulator to triangulate this polygon.
 	Triangulate::Process(a,result);
+
+
 
 	// print out the results.
 	int tcount = result.size()/3;
@@ -101,7 +81,9 @@ Ramp::Ramp(float x, float y)
 
 		shape.Set(vect,3);
 
-		body->CreateFixture(&shape,0.0f);
+		fd.shape = (b2Shape*)&shape;
+
+		body->CreateFixture(&fd);
 
 		printf("Triangle %d => (%f,%f) (%f,%f) (%f,%f)\n",i+1,vect[0].x,vect[0].y,vect[1].x,vect[1].y,vect[2].x,vect[2].y);
 	}
@@ -114,18 +96,18 @@ Ramp::Ramp(float x, float y)
 
 	/***********codigo CLanlib***************/
 	//criar a sprite
-	sprite = sm->getSprite("rampa");
+	sprite = sm->getSprite("trampolim");
 	sprite->set_linear_filter(true);
 
 }
 
 
-void Ramp::draw()
+void Trampolim::draw()
 {
 	sm->drawSprite(sprite,pX,pY);
 }
 
-void Ramp::handleevents()
+void Trampolim::handleevents()
 {
 
 	pX=body->GetPosition().x;
@@ -139,8 +121,8 @@ void Ramp::handleevents()
 	//4.886 largura no ficheiro c4d
 	//6 altura no ficheiro c4d
 	
-	float scalex = screenratio*4.886f /((float)sprite->get_width());
-	float scaley = screenratio*6.0f /((float)sprite->get_height());
+	float scalex = screenratio*10.0f /((float)sprite->get_width());
+	float scaley = screenratio*2.0f /((float)sprite->get_height());
 
 	sprite->set_angle(CL_Angle::from_radians(-angle));
 	sprite->set_scale(scalex,scaley);

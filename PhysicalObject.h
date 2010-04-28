@@ -8,6 +8,7 @@ enum EObjectType
 {
 	O_BLOCK,
 	O_BALL,
+	O_TRAMPOLIN,
 	O_PIT,
 	O_RAMP,
 	O_INVALID

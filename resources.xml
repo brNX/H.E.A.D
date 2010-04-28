@@ -12,5 +12,11 @@
 		<translation origin="bottom_left"/>
 		<rotation origin="bottom_left"/>
 	</sprite>
+
+  <sprite name="trampolim" base_angle="0">
+    <image file="resources/trampolim.png"></image>
+    <translation origin="bottom_left"/>
+    <rotation origin="bottom_left"/>
+  </sprite>
   
 </resources>
