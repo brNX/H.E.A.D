@@ -32,7 +32,7 @@ public:
 
 	inline void drawBox(float left,float bottom,float right,float top,CL_Colorf& color)
 	{
-		CL_Draw::box(gc,left*screenratio,screensizey-(bottom*screenratio),right*screenratio,screensizey-(top*screenratio),color);
+		CL_Draw::fill(gc,CL_Rectf(left*screenratio,screensizey-(top*screenratio),right*screenratio,screensizey-(bottom*screenratio)),color);
 	}
 
 	
@@ -50,6 +50,16 @@ public:
 		//CL_String fps = cl_format("%1 fps", frameratecounter.get_framerate());
 		fnt_clansoft.draw_text(gc, 300, screensizey/2, "You Win!");
 	}
+
+	inline void drawLose()
+	{
+		CL_Font fnt_clansoft;
+		fnt_clansoft = CL_Font(gc, L"Tahoma",120);
+
+		//CL_String fps = cl_format("%1 fps", frameratecounter.get_framerate());
+		fnt_clansoft.draw_text(gc, 300, screensizey/2, "You Lost");
+	}
+
 
 private:
 	

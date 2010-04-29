@@ -87,7 +87,6 @@ void Level::setupLevel(){
 	//todo:carregar objectos de algum ficheiro ou assim
 	gameBall = new Ball(1.0f,3.0f,15.0f);
 	levelitems.push_back(new Block(20.0f,10.0f,0.0f,-9.0f));
-	levelitems.push_back(new Block(2.0f,1.0f,20.0f,2.0f));
 	levelitems.push_back(new Ramp(1.45f,1.0f));
 	levelitems.push_back(new Trampolim(13.0f,1.0f));
 	levelitems.push_back(new Goal(27.0f,1.0f));

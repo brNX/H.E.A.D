@@ -50,16 +50,16 @@ Trampolim::Trampolim(float x, float y)
 	//uso do triangulate.cpp -> pega num poligono e divide em triangulos
 	Vector2dVector a;
 
-	a.push_back(b2Vec2(-5.0f,	0.0f));	
+	a.push_back(b2Vec2(-2.0f,	0.0f));	
 	a.push_back(b2Vec2(0.0f,	0.0f));	
-	a.push_back(b2Vec2(5.0f,	0.0f));	
-	a.push_back(b2Vec2(5.0f,	2.0f));	
-	a.push_back(b2Vec2(3.604f,	1.636f));
+	a.push_back(b2Vec2(2.0f,	0.0f));	
+	a.push_back(b2Vec2(2.0f,	2.0f));	
+	a.push_back(b2Vec2(1.442f,	1.636f));
 	a.push_back(b2Vec2(1.676f,	1.36f	));
 	a.push_back(b2Vec2(0.0f,	1.251f	));
-	a.push_back(b2Vec2(-1.676f,	1.36f	));
-	a.push_back(b2Vec2(-3.604f,	1.636f));
-	a.push_back(b2Vec2(-5.0f,	2.0f));	
+	a.push_back(b2Vec2(-0.67f,	1.36f	));
+	a.push_back(b2Vec2(-1.442f,	1.636f));
+	a.push_back(b2Vec2(-2.0f,	2.0f));	
 
 	Vector2dVector result;
 
@@ -127,7 +127,7 @@ void Trampolim::handleevents()
 	//4.886 largura no ficheiro c4d
 	//6 altura no ficheiro c4d
 	
-	float scalex = screenratio*10.0f /((float)sprite->get_width());
+	float scalex = screenratio*4.0f /((float)sprite->get_width());
 	float scaley = screenratio*2.0f /((float)sprite->get_height());
 
 	sprite->set_angle(CL_Angle::from_radians(-angle));
