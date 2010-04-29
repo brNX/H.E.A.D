@@ -2,7 +2,7 @@
 
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
-#include <ClanLib/gl.h>
+#include <ClanLib/gl1.h>
 #include <Box2D/Box2D.h>
 
 #include "app.h"
@@ -25,9 +25,9 @@ int App::start(const std::vector<CL_String> &args)
 		{
 
 			//codigo para antialiasing/multisampling
-			CL_OpenGLWindowDescription desc;
+			CL_GL1WindowDescription desc;
 			desc.set_title("H.E.A.D");
-			desc.set_size( CL_Size(640, 480), false );
+			desc.set_size( CL_Size(1024, 768), false );
 			desc.set_multisampling(4);
 			CL_DisplayWindow window(desc);	
 

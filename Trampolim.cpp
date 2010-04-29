@@ -117,7 +117,7 @@ void Trampolim::handleevents()
 	pX=body->GetPosition().x;
 	pY=body->GetPosition().y;
 	angle = body->GetAngle();
-	body->SetTransform(body->GetPosition(),angle+M_PI/2160.0);
+	body->SetTransform(body->GetPosition(),angle+M_PI/2160.0/2);
 
 	float screenratio=sm->getScreenRatio();
 

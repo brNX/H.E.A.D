@@ -10,6 +10,7 @@ enum EObjectType
 	O_BALL,
 	O_TRAMPOLIN,
 	O_PIT,
+	O_GOAL,
 	O_RAMP,
 	O_INVALID
 };
