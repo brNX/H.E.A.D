@@ -2,7 +2,7 @@
 
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
-#include <ClanLib/gl1.h>
+#include <ClanLib/gl.h>
 #include <Box2D/Box2D.h>
 
 #include "app.h"
@@ -25,23 +25,23 @@ int App::start(const std::vector<CL_String> &args)
 		{
 
 			//codigo para antialiasing/multisampling
-			CL_GL1WindowDescription desc;
+			CL_OpenGLWindowDescription desc;
 			desc.set_title("H.E.A.D");
 			desc.set_size( CL_Size(1024, 768), false );
-			desc.set_multisampling(4);
+			desc.set_multisampling(8);
 			CL_DisplayWindow window(desc);	
 
 			// Connect the Window close event
 			CL_Slot slot_quit = window.sig_window_close().connect(this, &App::on_window_close);
-
-			// Connect a keyboard handler to on_key_up()
-			CL_Slot slot_input_up = (window.get_ic().get_keyboard()).sig_key_up().connect(this, &App::on_input_up);
 
 			// Get the graphic context
 			CL_GraphicContext gc = window.get_gc();
 
 			//get instance do screenmanager(singleton)
 			sm = ScreenManager::getInstance();
+
+			// Connect a keyboard handler to on_key_up()
+			CL_Slot slot_input_up = (window.get_ic().get_keyboard()).sig_key_down().connect(sm,&ScreenManager::on_input_down);
 			
 			//passa a janela
 			sm->setWindow(&window);
@@ -62,12 +62,11 @@ int App::start(const std::vector<CL_String> &args)
 			int i = 0;
 			while (!quit)
 			{
-
 				unsigned startTime = CL_System::get_time();
 
 				// Clear the display in a dark blue nuance
 				// The four arguments are red, green, blue and alpha
-				gc.clear(CL_Colorf(0.0f,0.0f,0.2f));
+				gc.clear(CL_Colorf(0.0f,0.0f,0.3f));
 
 				//desenha o screen actual do screenmanager(nivel e/ou menu)
 				sm->drawCurrentScreen();
@@ -106,27 +105,6 @@ int App::start(const std::vector<CL_String> &args)
 	}
 	//wiimote.release();
 	return 0;
-}
-
-/// A key was pressed
-void App::on_input_up(const CL_InputEvent &key, const CL_InputState &state)
-{
-	if(key.id == CL_KEY_ESCAPE)
-	{
-		quit = true;
-	}
-
-	if(key.id == CL_KEY_UP){
-	}
-
-	if(key.id == CL_KEY_DOWN){
-	}
-
-	if(key.id == CL_KEY_LEFT){
-	}
-
-	if(key.id == CL_KEY_RIGHT){
-	}
 }
 
 /// The window was closed

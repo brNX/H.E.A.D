@@ -11,4 +11,7 @@ public:
 public:	
 	void draw();
 	void handleevents();
+	void roda(float angle);
+private:
+	float moveangle;
 };

@@ -2,6 +2,8 @@
 #include "Screen.h"
 #include <vector>
 #include <Box2D/Box2D.h>
+#include <ClanLib/core.h>
+#include <ClanLib/display.h>
 #include "BallContactListener.h"
 
 class Ball;
@@ -16,9 +18,11 @@ public:
 	void setupLevel();
 	void draw();
 	void HandleEvents();
-	inline b2World * getWorld(){return world;} 
+	void on_input_down(const CL_InputEvent &key, const CL_InputState &state);
+	inline b2World * getWorld(){return world;}
 private:
 	Ball * gameBall;
+	PhysicalObject * currentControllableObject;
 	std::vector<PhysicalObject*> levelitems;
 	b2World * world;
 	BallContactListener listener;

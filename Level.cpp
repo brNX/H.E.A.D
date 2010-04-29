@@ -6,6 +6,7 @@
 #include "Trampolim.h"
 #include "Goal.h"
 #include "GoalSensor.h"
+#include "Pit.h"
 
 ///constantes da simulacao do Box2D
 // Prepare for simulation. Typically we use a time step of 1/60 of a
@@ -62,12 +63,6 @@ void Level::HandleEvents(){
 
 	for (unsigned int i=0;i<levelitems.size();i++){
 		levelitems[i]->handleevents();
-		
-		//codigo de deteccao de colisões do clanlib(em principio vamos usar o do box2d)
-		/*if(gameBall->getCollisionOutline()->collide(*(levelitems[i]->getCollisionOutline()))){
-			printf("sim\n");	
-		}else
-			printf("nao\n");*/
 	}
 
 }
@@ -86,11 +81,47 @@ void Level::setupLevel(){
 
 	//todo:carregar objectos de algum ficheiro ou assim
 	gameBall = new Ball(1.0f,3.0f,15.0f);
-	levelitems.push_back(new Block(20.0f,10.0f,0.0f,-9.0f));
+	levelitems.push_back(new Block(17.0f/2.0f,9.237f/2.0f,8.735f,-3.691f));
+	levelitems.push_back(new Block(5.326f/2.0f,9.237f/2.0f,27.089f,-3.691f));
+	levelitems.push_back(new Pit(6.991f/2.0f,5.925f/2.0f,20.875f,-4.476f));
+	levelitems.push_back(new Pit(28.714f/2.0f,5.925f/2.0f,-14.252f,-4.476f));
+	
 	levelitems.push_back(new Ramp(1.45f,1.0f));
 	levelitems.push_back(new Trampolim(13.0f,1.0f));
+
+	currentControllableObject = levelitems.at(levelitems.size()-1);
+
 	levelitems.push_back(new Goal(27.0f,1.0f));
 	levelitems.push_back(new GoalSensor(27.0f,1.0f));
 
 
+}
+
+/// A key was pressed
+void Level::on_input_down(const CL_InputEvent &key, const CL_InputState &state)
+{
+	if(key.id == CL_KEY_ESCAPE)
+	{
+		printf("escape\n");
+	}
+
+	if(key.id == CL_KEY_UP){
+		printf("up\n");
+	}
+
+	if(key.id == CL_KEY_DOWN){
+		printf("down\n");
+	}
+
+	if(key.id == CL_KEY_LEFT){
+		printf("left\n");
+		if(currentControllableObject->getType()==O_TRAMPOLIN)
+			((Trampolim*)currentControllableObject)->roda(-1);
+	}
+
+	if(key.id == CL_KEY_RIGHT){
+		printf("right\n");
+		if(currentControllableObject->getType()==O_TRAMPOLIN)
+			((Trampolim*)currentControllableObject)->roda(1);
+	}
 }

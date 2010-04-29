@@ -80,8 +80,10 @@ public:
 	{
 		this->window=window;
 		gc=window->get_gc();
-		screensizey = window->get_geometry().bottom - window->get_geometry().top;
+		screensizey = window->get_geometry().bottom - window->get_geometry().top-40;
 	}
+
+	inline CL_DisplayWindow * getWindow(){return window;}
 	
 	inline Screen * getCurrentScreen(){return currentScreen;}
 	inline void setScreenRatio(float ratio){screenratio=ratio;}
@@ -89,5 +91,7 @@ public:
 	inline int getScreensizey(){return screensizey;}
 	inline void setScreenType(EScreenType type){currentScreenType = type;}
 	inline EScreenType getScreenType(){return currentScreenType;}
+
+	void on_input_down(const CL_InputEvent &key, const CL_InputState &state);
 
 };

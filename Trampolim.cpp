@@ -25,6 +25,7 @@ Trampolim::~Trampolim(void)
 
 Trampolim::Trampolim(float x, float y)
 {
+	moveangle=0.0f;
 	type = O_TRAMPOLIN;
 	pX=x;
 	pY=y;
@@ -118,8 +119,8 @@ void Trampolim::handleevents()
 	pX=body->GetPosition().x;
 	pY=body->GetPosition().y;
 	angle = body->GetAngle();
-	//body->SetTransform(body->GetPosition(),angle+CL_Angle::from_degrees(0.1f).to_radians());
-
+	body->SetTransform(body->GetPosition(),angle+moveangle);
+	moveangle=0;
 	float screenratio=sm->getScreenRatio();
 
 	//dados do poligono
@@ -132,4 +133,8 @@ void Trampolim::handleevents()
 
 	sprite->set_angle(CL_Angle::from_radians(-angle));
 	sprite->set_scale(scalex,scaley);
+}
+
+void Trampolim::roda(float angle){
+	moveangle-=CL_Angle::from_degrees(angle).to_radians();
 }

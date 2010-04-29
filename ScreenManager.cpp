@@ -40,3 +40,9 @@ CL_Sprite * ScreenManager::getSprite(CL_String8 name){
 void ScreenManager::handleEvents(){
 	currentScreen->HandleEvents();
 }
+
+/// A key was pressed
+void ScreenManager::on_input_down(const CL_InputEvent &key, const CL_InputState &state)
+{
+	currentScreen->on_input_down(key,state);
+}
