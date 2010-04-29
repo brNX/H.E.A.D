@@ -27,8 +27,12 @@ void ScreenManager::drawCurrentScreen(){
 
 	currentScreen->draw();
 
-	if (currentScreenType == S_WIN)
-		drawWin();
+	switch (currentScreenType){
+	case S_WIN:drawWin(); break;//TODO: mandar sinal , ou esperar por teclado para abrir menu
+	case S_MENU: break;
+	case S_PLAYING:break;
+	case S_OVER: drawLose();break;
+	}
 }
 
 ///devolve CL_Sprite utilizando o resourcemanager

@@ -22,8 +22,13 @@ void BallContactListener::BeginContact(b2Contact* contact){
 	printf("obj A type: %d\n",objA->getType());
 	printf("obj B type: %d\n",objB->getType());
 
+	// no caso  de ganhar
 	if (objA->getType()==O_BALL && objB->getType()== O_GOALSENSOR || objA->getType()==O_GOALSENSOR && objB->getType()== O_BALL )
 		ScreenManager::getInstance()->setScreenType(S_WIN);
+
+	//no caso de tocar num pit
+	if (objA->getType()==O_BALL && objB->getType()== O_PIT || objA->getType()==O_PIT && objB->getType()== O_BALL )
+		ScreenManager::getInstance()->setScreenType(S_OVER);
 
 }
 
