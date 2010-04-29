@@ -191,7 +191,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Goal.h"
+				RelativePath=".\GoalSensor.cpp"
 				>
 			</File>
 			<File
@@ -200,6 +200,10 @@
 			</File>
 			<File
 				RelativePath=".\PhysicalObject.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Pit.cpp"
 				>
 			</File>
 			<File
@@ -257,11 +261,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Goal.h"
+				>
+			</File>
+			<File
+				RelativePath=".\GoalSensor.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Level.h"
 				>
 			</File>
 			<File
 				RelativePath=".\PhysicalObject.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Pit.h"
 				>
 			</File>
 			<File

@@ -24,8 +24,11 @@
     <translation origin="bottom_center"/>
     <rotation origin="bottom_center"/>
   </sprite>
-  
-  
-  
-  
+
+  <sprite name="goalsensor" base_angle="0">
+    <image file="resources/goalsensor.png"></image>
+    <translation origin="bottom_center"/>
+    <rotation origin="bottom_center"/>
+  </sprite>
+   
 </resources>

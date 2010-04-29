@@ -44,6 +44,7 @@ Ball::Ball(float radius,float x,float y)
 	fd.shape = bodyshape;
 	fd.density = 1.0f;
 	fd.friction = 0.3f;
+	fd.restitution = 0.2f;
 
 	body->CreateFixture(&fd);
 

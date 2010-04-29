@@ -5,6 +5,7 @@
 #include "Ramp.h"
 #include "Trampolim.h"
 #include "Goal.h"
+#include "GoalSensor.h"
 
 ///constantes da simulacao do Box2D
 // Prepare for simulation. Typically we use a time step of 1/60 of a
@@ -89,7 +90,8 @@ void Level::setupLevel(){
 	levelitems.push_back(new Block(2.0f,1.0f,20.0f,2.0f));
 	levelitems.push_back(new Ramp(1.45f,1.0f));
 	levelitems.push_back(new Trampolim(13.0f,1.0f));
-	levelitems.push_back(new Goal(25.0f,1.0f));
+	levelitems.push_back(new Goal(27.0f,1.0f));
+	levelitems.push_back(new GoalSensor(27.0f,1.0f));
 
 
 }

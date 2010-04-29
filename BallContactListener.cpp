@@ -1,5 +1,6 @@
 #include "BallContactListener.h"
 #include "PhysicalObject.h"
+#include "ScreenManager.h"
 #include <stdio.h>
 
 //quando 2 objectos colidem pela primeira vez
@@ -20,6 +21,10 @@ void BallContactListener::BeginContact(b2Contact* contact){
 
 	printf("obj A type: %d\n",objA->getType());
 	printf("obj B type: %d\n",objB->getType());
+
+	if (objA->getType()==O_BALL && objB->getType()== O_GOALSENSOR || objA->getType()==O_GOALSENSOR && objB->getType()== O_BALL )
+		ScreenManager::getInstance()->setScreenType(S_WIN);
+
 }
 
 /// Called when two fixtures cease to touch.

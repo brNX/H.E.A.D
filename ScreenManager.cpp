@@ -12,6 +12,7 @@ void ScreenManager::start(){
 	//todo: por enquanto so 1 nivel , depois fazer um loader (p.ex de um ficheiro xml ou json)
 	currentScreen = new Level();
 	((Level*) currentScreen)->setupLevel();
+	currentScreenType = S_PLAYING;
 }
 
 ScreenManager * ScreenManager::getInstance(){
@@ -23,7 +24,11 @@ ScreenManager * ScreenManager::getInstance(){
 
 ///desenha o screen actual (level e/ou menu)
 void ScreenManager::drawCurrentScreen(){
+
 	currentScreen->draw();
+
+	if (currentScreenType == S_WIN)
+		drawWin();
 }
 
 ///devolve CL_Sprite utilizando o resourcemanager

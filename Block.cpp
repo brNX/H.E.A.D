@@ -53,8 +53,8 @@ Block::Block(float hsizex,float hsizey,float x, float y){
 	//sprite->set_linear_filter(true);
 
 	//criar o collision outline (colis�es no clanlib , possivelmente sem uso)
-	coutline = CL_CollisionOutline("resources/box.png");
-	coutline.set_alignment(origin_center);
+	//coutline = CL_CollisionOutline("resources/box.png");
+	//coutline.set_alignment(origin_center);
 
 
 

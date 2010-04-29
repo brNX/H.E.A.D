@@ -6,6 +6,15 @@ class Screen;
 
 //TODO: fazer algo quando o tamanho do screen muda (usar slots e signals)
 
+
+enum EScreenType
+{
+	S_MENU,
+	S_PLAYING,
+	S_WIN,
+	S_OVER
+};
+
 class ScreenManager
 {
 public:
@@ -32,11 +41,22 @@ public:
 		coutline->draw(0,0,CL_Colorf(0.0f,0.0f,1.0f),gc);
 	}
 
+
+	inline void drawWin()
+	{
+		CL_Font fnt_clansoft;
+		fnt_clansoft = CL_Font(gc, L"Tahoma",120);
+
+		//CL_String fps = cl_format("%1 fps", frameratecounter.get_framerate());
+		fnt_clansoft.draw_text(gc, 300, screensizey/2, "You Win!");
+	}
+
 private:
 	
 	static ScreenManager * lm_instance;
 	
 	Screen * currentScreen;
+	EScreenType currentScreenType;
 
 	CL_ResourceManager resources;
 	CL_GraphicContext gc;
@@ -57,5 +77,7 @@ public:
 	inline void setScreenRatio(float ratio){screenratio=ratio;}
 	inline float getScreenRatio(){return screenratio;}
 	inline int getScreensizey(){return screensizey;}
+	inline void setScreenType(EScreenType type){currentScreenType = type;}
+	inline EScreenType getScreenType(){return currentScreenType;}
 
 };

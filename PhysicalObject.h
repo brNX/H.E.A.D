@@ -11,6 +11,7 @@ enum EObjectType
 	O_TRAMPOLIN,
 	O_PIT,
 	O_GOAL,
+	O_GOALSENSOR,
 	O_RAMP,
 	O_INVALID
 };
