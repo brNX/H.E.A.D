@@ -187,6 +187,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Goal.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Goal.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Level.cpp"
 				>
 			</File>

@@ -6,14 +6,14 @@
  */
 
 #include "Goal.h"
+#include "ScreenManager.h"
+#include "Level.h"
 
 Goal::Goal() {
 	sm = ScreenManager::getInstance();
 	type = O_INVALID;
 	bodyshape=0;
 	body=0;
-	hsizeX=-1;
-	hsizeY=-1;
 	pX=0;
 	pY=0;
 }
@@ -31,8 +31,8 @@ Goal::Goal(float x,float y){
 	bodydef.position.Set(x,y);
 
 	//cria a forma
-	bodyshape=new b2PolygonShape();
-	((b2PolygonShape*)bodyshape)->SetAsBox(hsizeX,hsizeY);
+	//bodyshape=new b2PolygonShape();
+	//((b2PolygonShape*)bodyshape)->SetAsBox(hsizeX,hsizeY);
 
 	//cria o corpo usando as defini��es
 	body=NULL;
@@ -60,12 +60,12 @@ void Goal::draw(){
 
 	//TODO: usar sprite(s) e codigo do goal
 
-	CL_Rectf ground(CL_Sizef(hsizeX*2,hsizeY*2));
+	//CL_Rectf ground(CL_Sizef(hsizeX*2,hsizeY*2));
 
 	//centrar o rectangulo
-	ground.translate(-ground.get_center().x,-ground.get_center().y);
-	CL_Colorf color(0.5f,0.5f,0.5f);
-	sm->drawBox(ground.left+pX,ground.bottom+pY,ground.right+pX,ground.top+pY,color);
+	//ground.translate(-ground.get_center().x,-ground.get_center().y);
+	//CL_Colorf color(0.5f,0.5f,0.5f);
+	//sm->drawBox(ground.left+pX,ground.bottom+pY,ground.right+pX,ground.top+pY,color);
 
 	//sm->drawCoutline(&coutline,pX,pY);
 
@@ -81,10 +81,10 @@ void Goal::handleevents(){
 	//por enquanto so para teste (colis�es clanlib)
 	float screenratio=sm->getScreenRatio();
 
-	float scalex = screenratio*hsizeX /((float)coutline.get_width());
-	float scaley = screenratio*hsizeY /((float)coutline.get_height());
-	coutline.set_scale(scalex*2,scaley*2);
+	//float scalex = screenratio*hsizeX /((float)coutline.get_width());
+	//float scaley = screenratio*hsizeY /((float)coutline.get_height());
+	//coutline.set_scale(scalex*2,scaley*2);
 
-	coutline.set_translation(pX*screenratio,((float)sm->getScreensizey())-(pY*screenratio));
+	//coutline.set_translation(pX*screenratio,((float)sm->getScreensizey())-(pY*screenratio));
 
 }
