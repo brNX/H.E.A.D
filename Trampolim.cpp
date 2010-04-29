@@ -33,12 +33,11 @@ Trampolim::Trampolim(float x, float y)
 
 	/**********codigo Box2D***************/
 
-	//define o tipo e a posi��o 
+	//define o tipo e a posição 
 	bodydef.position.Set(x,y);
 	bodydef.type = b2_kinematicBody;
-	//bodydef.linearVelocity=b2Vec2(0.0f,0.4f);
 
-	//cria o corpo usando as defini��es
+	//cria o corpo usando as definições
 	body=NULL;
 	b2World * world = ((Level*)sm->getCurrentScreen())->getWorld();
 	body = world->CreateBody(&bodydef);
@@ -46,22 +45,22 @@ Trampolim::Trampolim(float x, float y)
 	b2FixtureDef fd;
 	fd.density = 1.0f;
 	fd.friction = 0.3f;
-	fd.restitution = 3.0f;
+	fd.restitution = 1.5f;
 
 	//uso do triangulate.cpp -> pega num poligono e divide em triangulos
 	Vector2dVector a;
 
-	a.insert(a.begin(),b2Vec2(5.0f,	0.0f));	
-	a.insert( a.begin(),b2Vec2(0.0f,	0.0f));	
-	a.insert( a.begin(),b2Vec2(0.0f,	2.0f));	
-	a.insert( a.begin(),b2Vec2(1.396f,	1.636f));	
-	a.insert( a.begin(),b2Vec2(3.324f,	1.36f));	
-	a.insert( a.begin(),b2Vec2(5.0f,	1.251f	));
-	a.insert( a.begin(),b2Vec2(6.676f,	1.36f	));
-	a.insert( a.begin(),b2Vec2(8.604f,	1.636f));	
-	a.insert(a.begin(), b2Vec2(10.0f,	2.0f));	
-	a.insert(a.begin(), b2Vec2(10.0f,	0.0f));	
-	
+	a.push_back(b2Vec2(-5.0f,	0.0f));	
+	a.push_back(b2Vec2(0.0f,	0.0f));	
+	a.push_back(b2Vec2(5.0f,	0.0f));	
+	a.push_back(b2Vec2(5.0f,	2.0f));	
+	a.push_back(b2Vec2(3.604f,	1.636f));
+	a.push_back(b2Vec2(1.676f,	1.36f	));
+	a.push_back(b2Vec2(0.0f,	1.251f	));
+	a.push_back(b2Vec2(-1.676f,	1.36f	));
+	a.push_back(b2Vec2(-3.604f,	1.636f));
+	a.push_back(b2Vec2(-5.0f,	2.0f));	
+
 	Vector2dVector result;
 
 	//  Invoke the triangulator to triangulate this polygon.
@@ -92,8 +91,10 @@ Trampolim::Trampolim(float x, float y)
 	}
 
 
-	//usa o userdata para guardar um ponteiro no objecto body do Box2D (usado nas colis�es)
+
+	//usa o userdata para guardar um ponteiro no objecto body do Box2D (usado nas colisões)
 	body->SetUserData(this);
+
 
 	/**************************************/
 
@@ -117,7 +118,7 @@ void Trampolim::handleevents()
 	pX=body->GetPosition().x;
 	pY=body->GetPosition().y;
 	angle = body->GetAngle();
-	body->SetTransform(body->GetPosition(),angle+CL_Angle::from_degrees(0.01).to_radians());
+	//body->SetTransform(body->GetPosition(),angle+CL_Angle::from_degrees(0.1f).to_radians());
 
 	float screenratio=sm->getScreenRatio();
 

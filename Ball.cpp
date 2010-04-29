@@ -29,7 +29,7 @@ Ball::Ball(float radius,float x,float y)
 	//define o tipo e a posição
 	bodydef.type = b2_dynamicBody;
 	bodydef.position.Set(x,y);
-	bodydef.linearVelocity=b2Vec2(0.0f,-5.0f);
+	bodydef.linearVelocity=b2Vec2(0.0f,-8.0f);
 
 	//define a forma
 	bodyshape=new b2CircleShape();

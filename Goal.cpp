@@ -8,6 +8,8 @@
 #include "Goal.h"
 #include "ScreenManager.h"
 #include "Level.h"
+#include "triangulate.h"
+#include <stdio.h>
 
 Goal::Goal() {
 	sm = ScreenManager::getInstance();
@@ -27,22 +29,70 @@ Goal::Goal(float x,float y){
 	sm = ScreenManager::getInstance();
 
 	/**********codigo Box2D***************/
-	//define a posi��o
+	//define a posição
 	bodydef.position.Set(x,y);
 
-	//cria a forma
-	//bodyshape=new b2PolygonShape();
-	//((b2PolygonShape*)bodyshape)->SetAsBox(hsizeX,hsizeY);
-
-	//cria o corpo usando as defini��es
+	//cria o corpo usando as definições
 	body=NULL;
 	b2World * world = ((Level*)sm->getCurrentScreen())->getWorld();
 	body = world->CreateBody(&bodydef);
 
-	body->CreateFixture(bodyshape,0.0f);
+	b2FixtureDef fd;
+	fd.density = 1.0f;
+	fd.friction = 0.3f;
+
+	//uso do triangulate.cpp -> pega num poligono e divide em triangulos
+	Vector2dVector a;
+
+	a.push_back(b2Vec2(	-2.0f,	4.0f));	
+	a.push_back(b2Vec2(-1.081f,	0.0f));		
+	a.push_back(b2Vec2(0.0f,	0.0f));	
+	a.push_back(b2Vec2(1.081f,	0.0f));		
+	a.push_back(b2Vec2(2.0f,	4.0f));	
+	a.push_back(b2Vec2(1.747f,	4.0f));		
+	a.push_back(b2Vec2(0.858f,	0.217f));		
+	a.push_back(b2Vec2(0.0f,	0.208f));		
+	a.push_back(b2Vec2(-0.858f,	0.217f));		
+	a.push_back(b2Vec2(-1.747f,	4.0f));		
+	
+	Vector2dVector result;
+
+	//  Invoke the triangulator to triangulate this polygon.
+	Triangulate::Process(a,result);
+
+
+	// print out the results.
+	int tcount = result.size()/3;
+
+	for (int i=0; i<tcount; i++)
+	{
+		b2Vec2 vect[3];
+
+		vect[0] = result[i*3+0];
+		vect[1] = result[i*3+1];
+		vect[2] = result[i*3+2];
+
+		b2PolygonShape shape;
+
+		shape.Set(vect,3);
+
+		fd.shape = (b2Shape*)&shape;
+
+		body->CreateFixture(&fd);
+
+		printf("Triangle %d => (%f,%f) (%f,%f) (%f,%f)\n",i+1,vect[0].x,vect[0].y,vect[1].x,vect[1].y,vect[2].x,vect[2].y);
+	}
+
 
 	//usa o userdata para guardar um ponteiro no objecto body do Box2D (usado nas colis�es)
 	body->SetUserData(this);
+	/**************************************/
+
+
+	/***********codigo CLanlib***************/
+	//criar a sprite
+	sprite = sm->getSprite("goal");
+	sprite->set_linear_filter(true);
 }
 
 Goal::~Goal() {
@@ -57,34 +107,23 @@ Goal::~Goal() {
 
 ///desenha o bloco
 void Goal::draw(){
-
-	//TODO: usar sprite(s) e codigo do goal
-
-	//CL_Rectf ground(CL_Sizef(hsizeX*2,hsizeY*2));
-
-	//centrar o rectangulo
-	//ground.translate(-ground.get_center().x,-ground.get_center().y);
-	//CL_Colorf color(0.5f,0.5f,0.5f);
-	//sm->drawBox(ground.left+pX,ground.bottom+pY,ground.right+pX,ground.top+pY,color);
-
-	//sm->drawCoutline(&coutline,pX,pY);
-
+	sm->drawSprite(sprite,pX,pY);
 }
 
-///vai buscar os dados da simula��o box2d e actualiza as corrdenadas
+///vai buscar os dados da simulação box2d e actualiza as corrdenadas
 void Goal::handleevents(){
 
 	pX=body->GetPosition().x;
 	pY=body->GetPosition().y;
 	angle = body->GetAngle();
 
-	//por enquanto so para teste (colis�es clanlib)
+	//por enquanto so para teste (colisões clanlib)
 	float screenratio=sm->getScreenRatio();
 
-	//float scalex = screenratio*hsizeX /((float)coutline.get_width());
-	//float scaley = screenratio*hsizeY /((float)coutline.get_height());
-	//coutline.set_scale(scalex*2,scaley*2);
+	float scalex = screenratio*4.0f /((float)sprite->get_width());
+	float scaley = screenratio*4.0f /((float)sprite->get_height());
 
-	//coutline.set_translation(pX*screenratio,((float)sm->getScreensizey())-(pY*screenratio));
+	sprite->set_angle(CL_Angle::from_radians(-angle));
+	sprite->set_scale(scalex,scaley);
 
 }

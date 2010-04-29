@@ -15,8 +15,17 @@
 
   <sprite name="trampolim" base_angle="0">
     <image file="resources/trampolim.png"></image>
-    <translation origin="bottom_left"/>
-    <rotation origin="bottom_left"/>
+    <translation origin="bottom_center"/>
+    <rotation origin="bottom_center"/>
   </sprite>
+
+  <sprite name="goal" base_angle="0">
+    <image file="resources/goal.png"></image>
+    <translation origin="bottom_center"/>
+    <rotation origin="bottom_center"/>
+  </sprite>
+  
+  
+  
   
 </resources>
