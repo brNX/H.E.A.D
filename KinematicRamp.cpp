@@ -3,6 +3,8 @@
 #include "Level.h"
 #include <stdio.h>
 
+#define FILTERFACTOR 0.1f;
+
 KinematicRamp::KinematicRamp(void)
 {
 }
@@ -25,10 +27,13 @@ KinematicRamp::~KinematicRamp(void)
 KinematicRamp::KinematicRamp(float x, float y)
 {
 	moveangle=0.0f;
+	realangle=0.0f;
 	type = O_KRAMP;
 	pX=x;
 	pY=y;
 	
+	
+
 	sm = ScreenManager::getInstance();
 
 	/**********codigo Box2D***************/
@@ -81,15 +86,28 @@ void KinematicRamp::draw()
 	sm->drawSprite(sprite,pX,pY);
 }
 
+
 void KinematicRamp::handleevents()
 {
 
 	pX=body->GetPosition().x;
 	pY=body->GetPosition().y;
+	
 	angle = body->GetAngle();
-	body->SetTransform(body->GetPosition(),angle+moveangle);
+
+	//TODO: ver isto depois, bode dos c++ em windows ... 
+	//angle = newangle + angle*(1.0f-FILTERFACTOR);
+	
+	float newangle=realangle+moveangle;
+	newangle *= FILTERFACTOR;
+	float multi = 1.0f-FILTERFACTOR ; 
+	newangle += angle*multi;
+	angle = newangle;
+
+	body->SetTransform(body->GetPosition(),angle);
 	moveangle=0;
 	float screenratio=sm->getScreenRatio();
+
 
 	//dados do poligono
 	

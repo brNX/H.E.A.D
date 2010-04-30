@@ -10,6 +10,7 @@ public:
 	virtual void draw();
 	virtual void HandleEvents();
 	virtual void on_input_down(const CL_InputEvent &key, const CL_InputState &state);
+	virtual void wiimote_input(float pitch);
 private:
 	//TODO: estrutura com elementos do screen ou não e deixar isso numa subclasse
 

@@ -147,22 +147,24 @@ void Level::on_input_down(const CL_InputEvent &key, const CL_InputState &state)
 		printf("down\n");
 	}
 
+	
 	if(key.id == CL_KEY_LEFT){
 		printf("left\n");
 		if(currentControllableObject->getType()==O_TRAMPOLIN)
 			((Trampolim*)currentControllableObject)->roda(-1);
 		if(currentControllableObject->getType()==O_KRAMP)
-			((Trampolim*)currentControllableObject)->roda(-1);
+			((KinematicRamp*)currentControllableObject)->roda(-1);
 		
 	}
 
 	if(key.id == CL_KEY_RIGHT){
 		printf("right\n");
 		if(currentControllableObject->getType()==O_TRAMPOLIN)
-			((KinematicRamp*)currentControllableObject)->roda(1);
+			((Trampolim*)currentControllableObject)->roda(1);
 		if(currentControllableObject->getType()==O_KRAMP)
 			((KinematicRamp*)currentControllableObject)->roda(1);
 	}
+	
 }
 
 void Level::restart(){
@@ -189,4 +191,12 @@ void Level::restart(){
 
 	//inicializa o listener para contactos entre objectos no mundo
 	world->SetContactListener((b2ContactListener*)&listener);
+}
+
+
+void Level::wiimote_input(float pitch){
+	if(currentControllableObject->getType()==O_TRAMPOLIN)
+		((Trampolim*)currentControllableObject)->setRotation(CL_Angle::from_degrees(pitch).to_radians());
+	if(currentControllableObject->getType()==O_KRAMP)
+		((KinematicRamp*)currentControllableObject)->setRotation(CL_Angle::from_degrees(pitch).to_radians());
 }

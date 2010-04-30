@@ -1,6 +1,7 @@
 #pragma once
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
+#include "Wiimote_handler.h"
 
 class Screen;
 
@@ -75,6 +76,8 @@ private:
 	float screenratio;
 	int screensizey;
 
+	Wiimote_handler * wiimote;
+
 public:
 	inline void setWindow(CL_DisplayWindow * window)
 	{
@@ -93,5 +96,7 @@ public:
 	inline EScreenType getScreenType(){return currentScreenType;}
 
 	void on_input_down(const CL_InputEvent &key, const CL_InputState &state);
+
+	inline void releaseWiimote(){wiimote->release();}
 
 };

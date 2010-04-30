@@ -4,6 +4,8 @@
 #include "triangulate.h"
 #include <stdio.h>
 
+#define FILTERFACTOR 0.1f;
+
 Trampolim::Trampolim(void)
 {
 }
@@ -26,11 +28,14 @@ Trampolim::~Trampolim(void)
 Trampolim::Trampolim(float x, float y)
 {
 	moveangle=0.0f;
+	realangle=0.0f;
 	type = O_TRAMPOLIN;
 	pX=x;
 	pY=y;
 
 	sm = ScreenManager::getInstance();
+
+	
 
 	/**********codigo Box2D***************/
 
@@ -113,13 +118,26 @@ void Trampolim::draw()
 	sm->drawSprite(sprite,pX,pY);
 }
 
+
+
 void Trampolim::handleevents()
 {
 
 	pX=body->GetPosition().x;
 	pY=body->GetPosition().y;
+
 	angle = body->GetAngle();
-	body->SetTransform(body->GetPosition(),angle+moveangle);
+
+	//TODO: ver isto depois, bode dos c++ em windows ... 
+	//angle = newangle + angle*(1.0f-FILTERFACTOR);
+	
+	float newangle=realangle+moveangle;
+	newangle *= FILTERFACTOR;
+	float multi = 1.0f-FILTERFACTOR ; 
+	newangle += angle*multi;
+	angle = newangle;
+	
+	body->SetTransform(body->GetPosition(),angle);
 	moveangle=0;
 	float screenratio=sm->getScreenRatio();
 

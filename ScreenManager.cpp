@@ -8,6 +8,8 @@ ScreenManager * ScreenManager::lm_instance = 0;
 ///inicia os objectos 
 void ScreenManager::start(){
 	resources = CL_ResourceManager("resources.xml");
+	wiimote = new Wiimote_handler();
+	wiimote->init();
 	
 	//todo: por enquanto so 1 nivel , depois fazer um loader (p.ex de um ficheiro xml ou json)
 	currentScreen = new Level();
@@ -42,6 +44,8 @@ CL_Sprite * ScreenManager::getSprite(CL_String8 name){
 
 ///proximo passo da logica e I/O
 void ScreenManager::handleEvents(){
+	wiimote->poll();
+	currentScreen->wiimote_input(wiimote->getPitch());
 	currentScreen->HandleEvents();
 }
 

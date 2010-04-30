@@ -99,11 +99,11 @@ int App::start(const std::vector<CL_String> &args)
 		CL_ConsoleWindow console("Console", 80, 160);
 		CL_Console::write_line("Exception caught: " + exception.get_message_and_stack_trace());
 		console.display_close_message();
-		//wiimote.release();
+		sm->releaseWiimote();
 
 		return -1;
 	}
-	//wiimote.release();
+	sm->releaseWiimote();
 	return 0;
 }
 

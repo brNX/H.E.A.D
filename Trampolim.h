@@ -12,6 +12,8 @@ public:
 	void draw();
 	void handleevents();
 	void roda(float angle);
+	inline void setRotation(float angle){realangle=angle;}
 private:
 	float moveangle;
+	float realangle;
 };

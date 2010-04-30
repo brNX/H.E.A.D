@@ -19,6 +19,7 @@ public:
 	void draw();
 	void HandleEvents();
 	void on_input_down(const CL_InputEvent &key, const CL_InputState &state);
+	void wiimote_input(float pitch);
 	inline b2World * getWorld(){return world;}
 private:
 	Ball * gameBall;

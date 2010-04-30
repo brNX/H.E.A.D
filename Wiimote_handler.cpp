@@ -16,6 +16,7 @@
 
 Wiimote_handler::Wiimote_handler() {
 	// TODO Auto-generated constructor stub
+	pitch = 0;
 
 }
 
@@ -78,6 +79,7 @@ void Wiimote_handler::handle_event(struct wiimote_t* wm) {
 	if (WIIUSE_USING_ACC(wm)) {
 		printf("wiimote roll  = %f [%f]\n", wm->orient.roll, wm->orient.a_roll);
 		printf("wiimote pitch = %f [%f]\n", wm->orient.pitch, wm->orient.a_pitch);
+		pitch=wm->orient.a_pitch;
 		printf("wiimote yaw   = %f\n", wm->orient.yaw);
 	}
 
