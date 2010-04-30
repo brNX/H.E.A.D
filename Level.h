@@ -22,8 +22,10 @@ public:
 	inline b2World * getWorld(){return world;}
 private:
 	Ball * gameBall;
+	int levelindex;
 	PhysicalObject * currentControllableObject;
 	std::vector<PhysicalObject*> levelitems;
 	b2World * world;
 	BallContactListener listener;
+	void restart();
 };

@@ -1,14 +1,14 @@
-#include "Ramp.h"
+#include "StartRamp.h"
 #include "Level.h"
 #include "ScreenManager.h"
 #include "triangulate.h"
 #include <stdio.h>
 
-Ramp::Ramp(void)
+StartRamp::StartRamp(void)
 {
 }
 
-Ramp::~Ramp(void)
+StartRamp::~StartRamp(void)
 {
 	if(bodyshape)
 		delete bodyshape;
@@ -23,9 +23,9 @@ Ramp::~Ramp(void)
 	sprite=0;
 }
 
-Ramp::Ramp(float x, float y)
+StartRamp::StartRamp(float x, float y)
 {
-	type = O_RAMP;
+	type = O_STARTRAMP;
 	pX=x;
 	pY=y;
 
@@ -33,10 +33,10 @@ Ramp::Ramp(float x, float y)
 
 	/**********codigo Box2D***************/
 
-	//define o tipo e a posi��o 
+	//define o tipo e a posição 
 	bodydef.position.Set(x,y);
 
-	//cria o corpo usando as defini��es
+	//cria o corpo usando as definições
 	body=NULL;
 	b2World * world = ((Level*)sm->getCurrentScreen())->getWorld();
 	body = world->CreateBody(&bodydef);
@@ -121,12 +121,12 @@ Ramp::Ramp(float x, float y)
 }
 
 
-void Ramp::draw()
+void StartRamp::draw()
 {
 	sm->drawSprite(sprite,pX,pY);
 }
 
-void Ramp::handleevents()
+void StartRamp::handleevents()
 {
 
 	pX=body->GetPosition().x;

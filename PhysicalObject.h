@@ -12,7 +12,8 @@ enum EObjectType
 	O_PIT,
 	O_GOAL,
 	O_GOALSENSOR,
-	O_RAMP,
+	O_STARTRAMP,
+	O_KRAMP,
 	O_INVALID
 };
 

@@ -1,13 +1,13 @@
 #pragma once
 #include "PhysicalObject.h"
 
-class Ramp :
+class StartRamp :
 	public PhysicalObject
 {
 public:
-	Ramp(void);
-	Ramp(float x, float y);
-	~Ramp(void);
+	StartRamp(void);
+	StartRamp(float x, float y);
+	~StartRamp(void);
 public:	
 	void draw();
 	void handleevents();

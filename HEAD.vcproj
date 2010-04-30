@@ -195,6 +195,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\KinematicRamp.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Level.cpp"
 				>
 			</File>
@@ -211,15 +215,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Ramp.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\Screen.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\ScreenManager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\StartRamp.cpp"
 				>
 			</File>
 			<File
@@ -269,6 +273,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\KinematicRamp.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Level.h"
 				>
 			</File>
@@ -285,15 +293,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Ramp.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Screen.h"
 				>
 			</File>
 			<File
 				RelativePath=".\ScreenManager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\StartRamp.h"
 				>
 			</File>
 			<File
