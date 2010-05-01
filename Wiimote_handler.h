@@ -20,6 +20,8 @@ public:
 	void release();
 	void poll();
 	inline float getPitch(){return pitch;}
+	inline bool getOne(){return one;}
+	inline bool getTwo(){return two;}
 private:
 	void handle_event(struct wiimote_t* wm);
 	void handle_read(struct wiimote_t* wm, byte* data, unsigned short len);
@@ -30,6 +32,7 @@ private:
 	wiimote** wiimotes;
 	int found, connected;
 	float pitch;
+	bool one, two;
 
 
 };

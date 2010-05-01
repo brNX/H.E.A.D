@@ -10,7 +10,7 @@
 #include "framerate_counter.h"
 
 ///1000 por ser millisegundos
-#define DESIRED_FRAME_TIME 1000.0/60.0
+#define DESIRED_FRAME_TIME 1000.0f/60.0f
 
 ///ratio screen/Box2D
 #define DEFAULTSCREENRATIO 30
@@ -41,7 +41,7 @@ int App::start(const std::vector<CL_String> &args)
 			sm = ScreenManager::getInstance();
 
 			// Connect a keyboard handler to on_key_up()
-			CL_Slot slot_input_up = (window.get_ic().get_keyboard()).sig_key_down().connect(sm,&ScreenManager::on_input_down);
+			CL_Slot slot_input_down = (window.get_ic().get_keyboard()).sig_key_down().connect(sm,&ScreenManager::on_input_down);
 			
 			//passa a janela
 			sm->setWindow(&window);

@@ -150,19 +150,19 @@ void Level::on_input_down(const CL_InputEvent &key, const CL_InputState &state)
 	
 	if(key.id == CL_KEY_LEFT){
 		printf("left\n");
-		if(currentControllableObject->getType()==O_TRAMPOLIN)
+		/*if(currentControllableObject->getType()==O_TRAMPOLIN)
 			((Trampolim*)currentControllableObject)->roda(-1);
 		if(currentControllableObject->getType()==O_KRAMP)
-			((KinematicRamp*)currentControllableObject)->roda(-1);
+			((KinematicRamp*)currentControllableObject)->roda(-1);*/
 		
 	}
 
 	if(key.id == CL_KEY_RIGHT){
 		printf("right\n");
-		if(currentControllableObject->getType()==O_TRAMPOLIN)
+		/*if(currentControllableObject->getType()==O_TRAMPOLIN)
 			((Trampolim*)currentControllableObject)->roda(1);
 		if(currentControllableObject->getType()==O_KRAMP)
-			((KinematicRamp*)currentControllableObject)->roda(1);
+			((KinematicRamp*)currentControllableObject)->roda(1);*/
 	}
 	
 }
@@ -194,9 +194,25 @@ void Level::restart(){
 }
 
 
-void Level::wiimote_input(float pitch){
+void Level::wiimote_input(float pitch,bool one , bool two){
 	if(currentControllableObject->getType()==O_TRAMPOLIN)
 		((Trampolim*)currentControllableObject)->setRotation(CL_Angle::from_degrees(pitch).to_radians());
 	if(currentControllableObject->getType()==O_KRAMP)
 		((KinematicRamp*)currentControllableObject)->setRotation(CL_Angle::from_degrees(pitch).to_radians());
+
+	if(two){
+		printf("2\n");
+		ScreenManager::getInstance()->setScreenType(S_PLAYING);
+		levelindex=2;
+		restart();
+		setupLevel();
+	}
+	
+	if(one){
+		printf("1\n");
+		ScreenManager::getInstance()->setScreenType(S_PLAYING);
+		levelindex=1;
+		restart();
+		setupLevel();
+	}
 }

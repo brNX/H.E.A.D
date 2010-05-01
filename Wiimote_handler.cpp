@@ -17,6 +17,8 @@
 Wiimote_handler::Wiimote_handler() {
 	// TODO Auto-generated constructor stub
 	pitch = 0;
+	one = false;
+	two=false;
 
 }
 
@@ -36,6 +38,9 @@ Wiimote_handler::~Wiimote_handler() {
 void Wiimote_handler::handle_event(struct wiimote_t* wm) {
 	printf("\n\n--- EVENT [id %i] ---\n", wm->unid);
 
+	one = false;
+	two = false;
+
 	/* if a button is pressed, report it */
 	if (IS_PRESSED(wm, WIIMOTE_BUTTON_A))		printf("A pressed\n");
 	if (IS_PRESSED(wm, WIIMOTE_BUTTON_B))		printf("B pressed\n");
@@ -45,8 +50,14 @@ void Wiimote_handler::handle_event(struct wiimote_t* wm) {
 	if (IS_PRESSED(wm, WIIMOTE_BUTTON_RIGHT))	printf("RIGHT pressed\n");
 	if (IS_PRESSED(wm, WIIMOTE_BUTTON_MINUS))	printf("MINUS pressed\n");
 	if (IS_PRESSED(wm, WIIMOTE_BUTTON_PLUS))	printf("PLUS pressed\n");
-	if (IS_PRESSED(wm, WIIMOTE_BUTTON_ONE))		printf("ONE pressed\n");
-	if (IS_PRESSED(wm, WIIMOTE_BUTTON_TWO))		printf("TWO pressed\n");
+	if (IS_PRESSED(wm, WIIMOTE_BUTTON_ONE)){
+		printf("ONE pressed\n");
+		one = true;
+	}
+	if (IS_PRESSED(wm, WIIMOTE_BUTTON_TWO)){
+			printf("TWO pressed\n");
+			two=true;
+	}
 	if (IS_PRESSED(wm, WIIMOTE_BUTTON_HOME))	printf("HOME pressed\n");
 
 	/*
@@ -59,21 +70,21 @@ void Wiimote_handler::handle_event(struct wiimote_t* wm) {
 	/*
 	 *	Pressing plus will tell the wiimote we are interested in movement.
 	 */
-	if (IS_JUST_PRESSED(wm, WIIMOTE_BUTTON_PLUS))
-		wiiuse_motion_sensing(wm, 1);
+	//if (IS_JUST_PRESSED(wm, WIIMOTE_BUTTON_PLUS));
+		
 
 	/*
 	 *	Pressing B will toggle the rumble
 	 *
 	 *	if B is pressed but is not held, toggle the rumble
 	 */
-	if (IS_JUST_PRESSED(wm, WIIMOTE_BUTTON_B))
-		wiiuse_toggle_rumble(wm);
+	/*if (IS_JUST_PRESSED(wm, WIIMOTE_BUTTON_B))
+		wiiuse_toggle_rumble(wm);*/
 
-	if (IS_JUST_PRESSED(wm, WIIMOTE_BUTTON_UP))
+	/*if (IS_JUST_PRESSED(wm, WIIMOTE_BUTTON_UP))
 		wiiuse_set_ir(wm, 1);
 	if (IS_JUST_PRESSED(wm, WIIMOTE_BUTTON_DOWN))
-		wiiuse_set_ir(wm, 0);
+		wiiuse_set_ir(wm, 0);*/
 
 	/* if the accelerometer is turned on then print angles */
 	if (WIIUSE_USING_ACC(wm)) {
@@ -295,6 +306,7 @@ void Wiimote_handler::init(){
 
 	wiiuse_rumble(wiimotes[0], 0);
 	wiiuse_rumble(wiimotes[1], 0);
+	wiiuse_motion_sensing(wiimotes[0], 1);
 
 }
 

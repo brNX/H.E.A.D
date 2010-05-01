@@ -59,7 +59,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wiiuse.lib Box2Dd.lib"
+				AdditionalDependencies="wiiuse.lib Box2Dd.lib fmodex_vc.lib"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				EntryPointSymbol="WinMainCRTStartup"
@@ -327,10 +327,6 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath=".\ClassDiagram1.cd"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>
