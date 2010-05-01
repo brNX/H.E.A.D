@@ -95,17 +95,11 @@ void KinematicRamp::handleevents()
 	
 	angle = body->GetAngle();
 
-	//TODO: ver isto depois, bode dos c++ em windows ... 
-	//angle = newangle + angle*(1.0f-FILTERFACTOR);
-	
-	float newangle=realangle+moveangle;
-	newangle *= FILTERFACTOR;
-	float multi = 1.0f-FILTERFACTOR ; 
-	newangle += angle*multi;
-	angle = newangle;
+	float32 angleError = angle - realangle;
+	float32 gain = 5.0f;
+	body->SetAngularVelocity(-gain * angleError);
 
-	body->SetTransform(body->GetPosition(),angle);
-	moveangle=0;
+
 	float screenratio=sm->getScreenRatio();
 
 
