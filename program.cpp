@@ -9,8 +9,8 @@
 #include <ClanLib/display.h>
 
 #include <ClanLib/application.h>
-//#include <ClanLib/gl.h>
-#include <ClanLib/gl1.h>
+#include <ClanLib/gl.h>
+//#include <ClanLib/gl1.h>
 //#include <ClanLib/gdi.h>
 
 #include "program.h"
@@ -25,8 +25,8 @@ int Program::main(const std::vector<CL_String> &args)
 	CL_SetupDisplay setup_display;
 
 	// Initialize the OpenGL drivers
-	//CL_SetupGL setup_gl;
-	CL_SetupGL1 setup_gl;
+	CL_SetupGL setup_gl;
+	//CL_SetupGL1 setup_gl;
 	//CL_SetupGDI setup_gdi;
 
 	// Start the Application

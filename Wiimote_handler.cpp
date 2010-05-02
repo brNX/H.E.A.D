@@ -71,15 +71,28 @@ void Wiimote_handler::handle_event(struct wiimote_t* wm) {
 	 *	Pressing plus will tell the wiimote we are interested in movement.
 	 */
 	//if (IS_JUST_PRESSED(wm, WIIMOTE_BUTTON_PLUS));
-		
+	
+		/*
+	 *	Pressing minus will tell the wiimote we are no longer interested in movement.
+	 *	This is useful because it saves battery power.
+	 */
+	if (IS_JUST_PRESSED(wm, WIIMOTE_BUTTON_MINUS))
+		wiiuse_motion_sensing(wm, 0);
+
+	/*
+	 *	Pressing plus will tell the wiimote we are interested in movement.
+	 */
+	if (IS_JUST_PRESSED(wm, WIIMOTE_BUTTON_PLUS))
+		wiiuse_motion_sensing(wm, 1);
+
 
 	/*
 	 *	Pressing B will toggle the rumble
 	 *
 	 *	if B is pressed but is not held, toggle the rumble
 	 */
-	/*if (IS_JUST_PRESSED(wm, WIIMOTE_BUTTON_B))
-		wiiuse_toggle_rumble(wm);*/
+	if (IS_JUST_PRESSED(wm, WIIMOTE_BUTTON_B))
+		wiiuse_toggle_rumble(wm);
 
 	/*if (IS_JUST_PRESSED(wm, WIIMOTE_BUTTON_UP))
 		wiiuse_set_ir(wm, 1);

@@ -2,7 +2,7 @@
 <resources>
   
 	<sprite name="ball" base_angle="0">
-		<image file="resources/ball.png"></image>
+		<image file="resources/ball-real.png"></image>
 		<translation origin="center"/>
 		<rotation origin="center"/>
 	</sprite>
@@ -26,7 +26,7 @@
   </sprite>
 
   <sprite name="goal" base_angle="0">
-    <image file="resources/goal.png"></image>
+    <image file="resources/goal-cup.png"></image>
     <translation origin="bottom_center"/>
     <rotation origin="bottom_center"/>
   </sprite>
