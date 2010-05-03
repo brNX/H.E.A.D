@@ -1,4 +1,5 @@
 #pragma once
+
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
 #include <String>
@@ -15,7 +16,8 @@ enum EScreenType
 	S_MENU,
 	S_PLAYING,
 	S_WIN,
-	S_OVER
+	S_OVER,
+	S_RELOADING
 };
 
 class ScreenManager
@@ -81,6 +83,7 @@ private:
 	Wiimote_handler * wiimote;
 
 	std::vector<CL_String> levelnames;
+
 
 public:
 	inline void setWindow(CL_DisplayWindow * window)

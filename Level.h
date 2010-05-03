@@ -5,9 +5,9 @@
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
 #include "BallContactListener.h"
+#include "PhysicalObject.h"
 
 class Ball;
-class PhysicalObject;
 
 class Level :
 	public Screen
@@ -19,7 +19,7 @@ public:
 	void draw();
 	void HandleEvents();
 	void on_input_down(const CL_InputEvent &key, const CL_InputState &state);
-	void wiimote_input(float pitch,bool one , bool two);
+	void wiimote_input(float pitch);
 	inline b2World * getWorld(){return world;}
 	inline CL_String getName(){return name;}
 	inline void setName(CL_String _name){name=_name;}
@@ -32,4 +32,6 @@ private:
 	b2World * world;
 	BallContactListener listener;
 	void restart();
+
+	std::map<CL_String,EObjectType> dict;
 };

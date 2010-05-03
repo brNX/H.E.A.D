@@ -9,10 +9,10 @@ ScreenManager * ScreenManager::lm_instance = 0;
 void ScreenManager::start(){
 	//sprites
 	resources = CL_ResourceManager("resources.xml");
-	
+
 	//init da wiimote
-	wiimote = new Wiimote_handler();
-	wiimote->init();
+	//wiimote = new Wiimote_handler();
+	//wiimote->init();
 
 	//vai buscar o nome dos niveis ao ficheiro xml
 	CL_File file("levels.xml", CL_File::open_existing, CL_File::access_read);
@@ -21,7 +21,7 @@ void ScreenManager::start(){
 
 	CL_DomNode root = document.get_first_child();
 	CL_DomNode current = root.get_first_child();
-	
+
 	printf("niveis?\n");
 	while (!current.is_null()){
 		const CL_String &level = current.to_element().get_attribute("name");
@@ -47,13 +47,15 @@ ScreenManager * ScreenManager::getInstance(){
 ///desenha o screen actual (level e/ou menu)
 void ScreenManager::drawCurrentScreen(){
 
-	currentScreen->draw();
+	if (currentScreenType != S_RELOADING){
+		currentScreen->draw();
 
-	switch (currentScreenType){
-	case S_WIN:drawWin(); break;//TODO: mandar sinal , ou esperar por teclado para abrir menu
-	case S_MENU: break;
-	case S_PLAYING:break;
-	case S_OVER: drawLose();break;
+		switch (currentScreenType){
+			case S_WIN:drawWin(); break;//TODO: mandar sinal , ou esperar por teclado para abrir menu
+			case S_MENU: break;
+			case S_PLAYING:break;
+			case S_OVER: drawLose();break;
+		}
 	}
 }
 
@@ -64,13 +66,49 @@ CL_Sprite * ScreenManager::getSprite(CL_String8 name){
 
 ///proximo passo da logica e I/O
 void ScreenManager::handleEvents(){
-	wiimote->poll();
-	currentScreen->wiimote_input(wiimote->getPitch(),wiimote->getOne(),wiimote->getTwo());
+	//wiimote->poll();
+	//currentScreen->wiimote_input(wiimote->getPitch());
+	/*
+	if(wiimote->getOne()){
+		printf("2\n");
+		currentScreenType = S_RELOADING;
+		delete currentScreen;
+		currentScreen = new Level(levelnames[1],2);
+		((Level*) currentScreen)->setupLevel();
+		currentScreenType = S_PLAYING;
+	}
+
+	if(wiimote->getTwo()){
+		printf("1\n");
+		currentScreenType = S_RELOADING;
+		delete currentScreen;
+		currentScreen = new Level(levelnames[0],1);
+		((Level*) currentScreen)->setupLevel();
+		currentScreenType = S_PLAYING;
+	}*/
+
 	currentScreen->HandleEvents();
 }
 
 /// A key was pressed
 void ScreenManager::on_input_down(const CL_InputEvent &key, const CL_InputState &state)
 {
-	currentScreen->on_input_down(key,state);
+	if(key.id == CL_KEY_2){
+		printf("2\n");
+		currentScreenType = S_RELOADING;
+		delete currentScreen;
+		currentScreen = new Level(levelnames[1],2);
+		((Level*) currentScreen)->setupLevel();
+		currentScreenType = S_PLAYING;
+
+	}else 
+		if(key.id == CL_KEY_1){
+		printf("1\n");
+		currentScreenType = S_RELOADING;
+		delete currentScreen;
+		currentScreen = new Level(levelnames[0],1);
+		((Level*) currentScreen)->setupLevel();
+		currentScreenType = S_PLAYING;
+		}else 
+			currentScreen->on_input_down(key,state);
 }

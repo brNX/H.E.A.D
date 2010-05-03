@@ -2,7 +2,9 @@
 
 #include <ClanLib/display.h>
 #include <Box2D/Box2D.h>
-#include "ScreenManager.h"
+
+//forward declaration do screenmanager
+class ScreenManager;
 
 enum EObjectType
 {
