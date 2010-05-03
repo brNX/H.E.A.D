@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level>
+
+  <object type='Ball'>
+    <Position x='3.0' y='20.0'/>
+    <Radius>1.0</Radius>
+  </object>
+
+  <object type='StartRamp'>
+    <Position x='1.45' y='1.0'/>
+  </object>
+
+  <object type='Block'>
+    <Position x='8.735' y='-3.691'/>
+    <Hsize x='8.5' y='4.6185'/>
+  </object>
+
+  <object type='Block'>
+    <Position x='27.089' y='-3.691'/>
+    <Hsize x='2.663' y='4.6185'/>
+  </object>
+
+  <object type='Pit'>
+    <Position x='20.875' y='-4.476'/>
+    <Hsize x='3.4955' y='2.9625'/>
+  </object>
+
+  <object type='Pit'>
+    <Position x='-14.252' y='-4.476'/>
+    <Hsize x='14.357' y='2.9625'/>
+  </object>
+
+  <object type='KinematicRamp'>
+    <Position x='10.849' y='4.129'/>
+  </object>
+
+  <object type='Goal'>
+    <Position x='22.587' y='1.0'/>
+  </object>
+
+  <object type='GoalSensor'>
+    <Position x='22.587' y='1.0'/>
+  </object>
+</level>

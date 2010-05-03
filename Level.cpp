@@ -10,6 +10,8 @@
 #include "KinematicRamp.h"
 #include "ScreenManager.h"
 
+
+
 ///constantes da simulacao do Box2D
 // Prepare for simulation. Typically we use a time step of 1/60 of a
 // second (60Hz) and 10 iterations. This provides a high quality simulation
@@ -19,9 +21,10 @@
 #define positionIterations  2
 
 
-Level::Level(void)
+Level::Level(CL_String _name,int _levelindex)
 {
-	levelindex=1;
+	name = _name;
+	levelindex=_levelindex;
 	world=0;
 	gameBall=0;
 	restart();
@@ -74,12 +77,13 @@ void Level::draw(){
 void Level::setupLevel(){
 
 
+
+
 	//todo:carregar objectos de algum ficheiro ou assim
 	if(levelindex==1)
 		gameBall = new Ball(1.0f,3.0f,15.0f);
 	else
 		gameBall = new Ball(1.0f,3.0f,20.0f);
-
 	
 	levelitems.push_back(new StartRamp(1.45f,1.0f));
 	
@@ -112,7 +116,6 @@ void Level::on_input_down(const CL_InputEvent &key, const CL_InputState &state)
 	if(key.id == CL_KEY_ESCAPE)
 	{
 		printf("escape\n");
-
 	}
 	
 	if (key.id == CL_KEY_R)
@@ -138,7 +141,6 @@ void Level::on_input_down(const CL_InputEvent &key, const CL_InputState &state)
 		setupLevel();
 	}
 
-
 	if(key.id == CL_KEY_UP){
 		printf("down\n");
 	}
@@ -154,7 +156,6 @@ void Level::on_input_down(const CL_InputEvent &key, const CL_InputState &state)
 			((Trampolim*)currentControllableObject)->roda(-1);
 		if(currentControllableObject->getType()==O_KRAMP)
 			((KinematicRamp*)currentControllableObject)->roda(-1);*/
-		
 	}
 
 	if(key.id == CL_KEY_RIGHT){

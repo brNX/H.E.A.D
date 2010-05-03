@@ -7,14 +7,34 @@ ScreenManager * ScreenManager::lm_instance = 0;
 
 ///inicia os objectos 
 void ScreenManager::start(){
+	//sprites
 	resources = CL_ResourceManager("resources.xml");
+	
+	//init da wiimote
 	wiimote = new Wiimote_handler();
 	wiimote->init();
+
+	//vai buscar o nome dos niveis ao ficheiro xml
+	CL_File file("levels.xml", CL_File::open_existing, CL_File::access_read);
+	CL_DomDocument document;
+	document.load(file);
+
+	CL_DomNode root = document.get_first_child();
+	CL_DomNode current = root.get_first_child();
 	
-	//todo: por enquanto so 1 nivel , depois fazer um loader (p.ex de um ficheiro xml ou json)
-	currentScreen = new Level();
+	printf("niveis?\n");
+	while (!current.is_null()){
+		const CL_String &level = current.to_element().get_attribute("name");
+		printf("%s\n",level.c_str());
+		levelnames.push_back(level);
+		current=current.get_next_sibling();
+	}
+
+	//TODO: menu inicial primeiro
+	currentScreen = new Level(levelnames[0],1);
 	((Level*) currentScreen)->setupLevel();
 	currentScreenType = S_PLAYING;
+
 }
 
 ScreenManager * ScreenManager::getInstance(){

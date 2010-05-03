@@ -1,7 +1,9 @@
 #pragma once
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
+#include <String>
 #include "Wiimote_handler.h"
+
 
 class Screen;
 
@@ -77,6 +79,8 @@ private:
 	int screensizey;
 
 	Wiimote_handler * wiimote;
+
+	std::vector<CL_String> levelnames;
 
 public:
 	inline void setWindow(CL_DisplayWindow * window)
