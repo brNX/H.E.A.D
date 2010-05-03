@@ -306,6 +306,18 @@
 					>
 				</File>
 				<File
+					RelativePath=".\level1.xml"
+					>
+				</File>
+				<File
+					RelativePath=".\level2.xml"
+					>
+				</File>
+				<File
+					RelativePath=".\levels.xml"
+					>
+				</File>
+				<File
 					RelativePath=".\Screen.cpp"
 					>
 				</File>
