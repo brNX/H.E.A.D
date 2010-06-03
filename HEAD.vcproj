@@ -214,6 +214,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Bumper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Bumper.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Goal.cpp"
 					>
 				</File>

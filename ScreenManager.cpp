@@ -67,8 +67,6 @@ CL_Sprite * ScreenManager::getSprite(CL_String8 name){
 ///proximo passo da logica e I/O
 void ScreenManager::handleEvents(){
 	wiimote->poll();
-
-	
 	currentScreen->wiimote_input(wiimote->getHead());
 	
 	if(wiimote->getOne()){

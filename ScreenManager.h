@@ -62,7 +62,7 @@ public:
 		fnt_clansoft = CL_Font(gc, L"Tahoma",120);
 
 		//CL_String fps = cl_format("%1 fps", frameratecounter.get_framerate());
-		fnt_clansoft.draw_text(gc, 300, screensizey/2, "You Lost");
+		fnt_clansoft.draw_text(gc, 300, screensizey/2, "Game over");
 	}
 
 

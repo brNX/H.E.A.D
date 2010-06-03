@@ -340,7 +340,7 @@ void Wiimote_handler::init(){
 
 	wiiuse_rumble(wiimotes[0], 0);
 	wiiuse_rumble(wiimotes[1], 0);
-	wiiuse_motion_sensing(wiimotes[0], 1);
+	//wiiuse_motion_sensing(wiimotes[0], 1);
 
 }
 
