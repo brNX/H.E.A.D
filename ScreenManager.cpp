@@ -11,8 +11,8 @@ void ScreenManager::start(){
 	resources = CL_ResourceManager("resources.xml");
 
 	//init da wiimote
-	//wiimote = new Wiimote_handler();
-	//wiimote->init();
+	wiimote = new Wiimote_handler();
+	wiimote->init();
 
 	//vai buscar o nome dos niveis ao ficheiro xml
 	CL_File file("levels.xml", CL_File::open_existing, CL_File::access_read);
@@ -66,9 +66,9 @@ CL_Sprite * ScreenManager::getSprite(CL_String8 name){
 
 ///proximo passo da logica e I/O
 void ScreenManager::handleEvents(){
-	//wiimote->poll();
-	//currentScreen->wiimote_input(wiimote->getPitch());
-	/*
+	wiimote->poll();
+	currentScreen->wiimote_input(wiimote->getPitch());
+	
 	if(wiimote->getOne()){
 		printf("2\n");
 		currentScreenType = S_RELOADING;
@@ -85,7 +85,7 @@ void ScreenManager::handleEvents(){
 		currentScreen = new Level(levelnames[0],1);
 		((Level*) currentScreen)->setupLevel();
 		currentScreenType = S_PLAYING;
-	}*/
+	}
 
 	currentScreen->HandleEvents();
 }

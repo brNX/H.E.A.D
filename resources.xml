@@ -13,6 +13,12 @@
 		<rotation origin="bottom_left"/>
 	</sprite>
 
+  <sprite name="bumper" base_angle="0">
+    <image file="resources/bumper.png"></image>
+    <translation origin="bottom_left"/>
+    <rotation origin="bottom_left"/>
+  </sprite>
+
   <sprite name="krampa" base_angle="0">
     <image file="resources/krampa.png"></image>
     <translation origin="bottom_center" y="112"/>

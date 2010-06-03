@@ -23,7 +23,6 @@ int App::start(const std::vector<CL_String> &args)
 		
 		try
 		{
-
 			//codigo para antialiasing/multisampling
 			CL_OpenGLWindowDescription desc;
 			desc.set_title("H.E.A.D");
