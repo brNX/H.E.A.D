@@ -17,6 +17,7 @@
 Wiimote_handler::Wiimote_handler() {
 	// TODO Auto-generated constructor stub
 	pitch = 0;
+	head_align = 0;
 	one = false;
 	two=false;
 
@@ -94,10 +95,10 @@ void Wiimote_handler::handle_event(struct wiimote_t* wm) {
 	if (IS_JUST_PRESSED(wm, WIIMOTE_BUTTON_B))
 		wiiuse_toggle_rumble(wm);
 
-	/*if (IS_JUST_PRESSED(wm, WIIMOTE_BUTTON_UP))
+	if (IS_JUST_PRESSED(wm, WIIMOTE_BUTTON_UP))
 		wiiuse_set_ir(wm, 1);
 	if (IS_JUST_PRESSED(wm, WIIMOTE_BUTTON_DOWN))
-		wiiuse_set_ir(wm, 0);*/
+		wiiuse_set_ir(wm, 0);
 
 	/* if the accelerometer is turned on then print angles */
 	if (WIIUSE_USING_ACC(wm)) {
@@ -115,12 +116,32 @@ void Wiimote_handler::handle_event(struct wiimote_t* wm) {
 	 */
 	if (WIIUSE_USING_IR(wm)) {
 		int i = 0;
+		int num_points = 0;
+		int x1, y1, x2, y2;
 
 		/* go through each of the 4 possible IR sources */
 		for (; i < 4; ++i) {
 			/* check if the source is visible */
 			if (wm->ir.dot[i].visible)
+				num_points++;
 				printf("IR source %i: (%u, %u)\n", i, wm->ir.dot[i].x, wm->ir.dot[i].y);
+		}
+
+		if(num_points >= 2){
+			if((wm->ir.dot[0].x) < (wm->ir.dot[1].x)){
+				x1 = wm->ir.dot[0].x;
+				y1 = wm->ir.dot[0].y;
+				x2 = wm->ir.dot[1].x;
+				y2 = wm->ir.dot[1].y;
+			}else{
+				x1 = wm->ir.dot[1].x;
+				y1 = wm->ir.dot[1].y;
+				x2 = wm->ir.dot[0].x;
+				y2 = wm->ir.dot[0].y;
+			}
+
+			printf("Y diff: %d", y2 - y1);
+			head_align = (y2 - y1)/4;
 		}
 
 		printf("IR cursor: (%u, %u)\n", wm->ir.x, wm->ir.y);

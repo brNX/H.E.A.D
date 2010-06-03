@@ -59,7 +59,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wiiuse.lib Box2Dd.lib fmodex_vc.lib"
+				AdditionalDependencies="wiiuse.lib Box2D.lib"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				EntryPointSymbol="WinMainCRTStartup"

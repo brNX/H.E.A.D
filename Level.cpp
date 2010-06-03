@@ -141,6 +141,7 @@ void Level::setupLevel(){
 		
 		case O_KRAMP: 
 			levelitems.push_back(new KinematicRamp(x,y));
+			currentControllableObject = levelitems.at(levelitems.size()-1);
 			break;
 		
 		case O_TRAMPOLIN: 
