@@ -2,6 +2,7 @@
 #include "ScreenManager.h"
 #include "Level.h"
 
+
 Ball::Ball(void)
 {
 	type = O_INVALID;
@@ -19,8 +20,11 @@ Ball::Ball(float radius,float x,float y)
 {
 	type = O_BALL;
 	this->radius=radius;
+	ticks = 0;
 	pX=x;
 	pY=y;
+
+	bump_sound = CL_SoundBuffer("clunk.wav");
 
 	sm = ScreenManager::getInstance();
 
@@ -89,13 +93,24 @@ void Ball::draw(){
 
 }
 
+void Ball::playsound(){
+	if(ticks == 0){
+		bump_sound.play();
+		ticks = 60;
+		printf("PLAY SOUND!!!");
+	}
+}
+
 ///vai buscar os dados da simula��o box2d e actualiza as corrdenadas
 void Ball::handleevents(){
 
 	pX=body->GetPosition().x;
 	pY=body->GetPosition().y;
 	angle = body->GetAngle();
-
+	
+	if(ticks > 0){
+		ticks--;
+	}
 	float scale = sm->getScreenRatio() /(float)(sprite->get_height());
 	
 	sprite->set_angle(CL_Angle::from_radians(-angle));

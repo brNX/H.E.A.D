@@ -9,6 +9,7 @@
 #define APP_H_
 
 #include "ScreenManager.h"
+#include <ClanLib/sound.h>
 
 // This is the Application class (That is instantiated by the Program Class)
 class App

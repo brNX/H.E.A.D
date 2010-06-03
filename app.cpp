@@ -23,6 +23,8 @@ int App::start(const std::vector<CL_String> &args)
 		
 		try
 		{
+			CL_SetupSound setup_sound;
+			CL_SoundOutput output(44100);
 
 			//codigo para antialiasing/multisampling
 			CL_OpenGLWindowDescription desc;
