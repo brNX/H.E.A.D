@@ -100,15 +100,41 @@ void ScreenManager::on_input_down(const CL_InputEvent &key, const CL_InputState 
 		currentScreen = new Level(levelnames[1],2);
 		((Level*) currentScreen)->setupLevel();
 		currentScreenType = S_PLAYING;
-
-	}else 
-		if(key.id == CL_KEY_1){
+	}
+	
+	if(key.id == CL_KEY_1){
 		printf("1\n");
 		currentScreenType = S_RELOADING;
 		delete currentScreen;
 		currentScreen = new Level(levelnames[0],1);
 		((Level*) currentScreen)->setupLevel();
 		currentScreenType = S_PLAYING;
-		}else 
-			currentScreen->on_input_down(key,state);
+	}
+
+	if(key.id == CL_KEY_3){
+		printf("3\n");
+		currentScreenType = S_RELOADING;
+		delete currentScreen;
+		currentScreen = new Level(levelnames[2],3);
+		((Level*) currentScreen)->setupLevel();
+		currentScreenType = S_PLAYING;
+	}
+
+	if(key.id == CL_KEY_4){
+		printf("4\n");
+		currentScreenType = S_RELOADING;
+		delete currentScreen;
+		currentScreen = new Level(levelnames[3],4);
+		((Level*) currentScreen)->setupLevel();
+		currentScreenType = S_PLAYING;
+	}
+
+	if(key.id == CL_KEY_5){
+		printf("4\n");
+		currentScreenType = S_RELOADING;
+		delete currentScreen;
+		currentScreen = new Level(levelnames[3],4);
+		((Level*) currentScreen)->setupLevel();
+		currentScreenType = S_PLAYING;
+	}
 }

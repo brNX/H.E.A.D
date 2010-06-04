@@ -4,7 +4,7 @@
   <object type='Ball'>
     <Position x='3.0' y='15.0'/>
     <Radius>1.0</Radius>
-    <Force x='0.0' y='-30.0' />
+    <Force x='0.0' y='-8.0' />
   </object>
   
   <object type='StartRamp'>

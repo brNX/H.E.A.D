@@ -45,10 +45,6 @@
     <Position x='10.849' y='4.129'/>
   </object>
 
-  <object type='Trampolin' controllable='true'>
-    <Position x='13.0' y='6.0'/>
-  </object>
-
   <object type='Goal'>
     <Position x='22.587' y='1.0'/>
   </object>

@@ -51,7 +51,7 @@ Trampolim::Trampolim(float x, float y)
 	b2FixtureDef fd;
 	fd.density = 1.0f;
 	fd.friction = 0.3f;
-	fd.restitution = 1.5f;
+	fd.restitution = 1.2f;
 
 	//uso do triangulate.cpp -> pega num poligono e divide em triangulos
 	Vector2dVector a;
