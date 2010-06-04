@@ -133,7 +133,7 @@ void ScreenManager::on_input_down(const CL_InputEvent &key, const CL_InputState 
 		printf("4\n");
 		currentScreenType = S_RELOADING;
 		delete currentScreen;
-		currentScreen = new Level(levelnames[3],4);
+		currentScreen = new Level(levelnames[4],5);
 		((Level*) currentScreen)->setupLevel();
 		currentScreenType = S_PLAYING;
 	}
