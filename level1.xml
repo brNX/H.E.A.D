@@ -3,7 +3,8 @@
   
   <object type='Ball'>
     <Position x='3.0' y='15.0'/>
-    <Radius>1.0</Radius> 
+    <Radius>1.0</Radius>
+    <Force x='0.0' y='-30.0' />
   </object>
   
   <object type='StartRamp'>
@@ -30,7 +31,7 @@
     <Hsize x='14.357' y='2.9625'/>
   </object>
           
-  <object type='Trampolin'>
+  <object type='Trampolin' controllable='true'>
     <Position x='13.0' y='1.0'/>
   </object>
   

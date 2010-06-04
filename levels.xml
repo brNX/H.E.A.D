@@ -2,5 +2,6 @@
 <levels>
   <level name="level1.xml"/>
   <level name="level2.xml"/>
+  <level name="level3.xml"/>
 </levels>
 

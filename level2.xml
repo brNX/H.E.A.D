@@ -4,6 +4,7 @@
   <object type='Ball'>
     <Position x='3.0' y='20.0'/>
     <Radius>1.0</Radius>
+    <Force x='0.0' y='-8.0' />
   </object>
 
   <object type='StartRamp'>
@@ -40,8 +41,12 @@
     <Hsize x='1.169' y='13.67'/>
   </object>
   
-  <object type='KinematicRamp'>
+  <object type='KinematicRamp' controllable='true'>
     <Position x='10.849' y='4.129'/>
+  </object>
+
+  <object type='Trampolin' controllable='true'>
+    <Position x='13.0' y='6.0'/>
   </object>
 
   <object type='Goal'>
