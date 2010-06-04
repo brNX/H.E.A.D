@@ -86,7 +86,7 @@ void Level::draw(){
 
 ///incializa os objectos do nivel
 void Level::setupLevel(){
-
+	bool controllable;
 
 	//vai buscar o nome dos niveis ao ficheiro xml
 	CL_File file(name, CL_File::open_existing, CL_File::access_read);
@@ -98,13 +98,21 @@ void Level::setupLevel(){
 
 	printf("conteudo niveis?\n");
 	while (!current.is_null()){
+		controllable = false;
+
 		CL_String type = current.to_element().get_attribute("type");
+		if (current.to_element().has_attribute("controllable")){
+			if(current.to_element().get_attribute("controllable").compare("true") == 0){
+				controllable = true;
+			}
+		}
 
 		printf("objecto: %s\n",type.c_str());
 		printf("enum: %d\n",dict[type]);
 		float radius;
 		float hsizex;
 		float hsizey;
+		float forceX, forceY;
 		
 		//posicao
 		CL_DomNode child = current.get_first_child();
@@ -132,7 +140,10 @@ void Level::setupLevel(){
 			child=child.get_next_sibling();
 			radius= CL_StringHelp::text_to_float(child.to_element().get_text());
 			printf("radius: %f\n",radius);
-			gameBall = new Ball(radius,x,y);
+			child=child.get_next_sibling();
+			forceX = CL_StringHelp::text_to_float(child.to_element().get_attribute("x").c_str());
+			forceY = CL_StringHelp::text_to_float(child.to_element().get_attribute("y").c_str());
+			gameBall = new Ball(radius,x,y, forceX, forceY);
 			break;
 		
 		case O_STARTRAMP:
@@ -141,13 +152,28 @@ void Level::setupLevel(){
 		
 		case O_KRAMP: 
 			levelitems.push_back(new KinematicRamp(x,y));
-			currentControllableObject = levelitems.at(levelitems.size()-1);
+			if(controllable){
+				controllableObjects.push_back(levelitems.at(levelitems.size()-1));
+			}else{
+				if(child.to_element().has_attribute("angle")){
+					float angle = CL_StringHelp::text_to_float(child.to_element().get_attribute("angle").c_str());
+					((KinematicRamp*)levelitems.at(levelitems.size()-1))->setRotation(CL_Angle::from_degrees(angle).to_radians());
+				}
+			}
+			
 			break;
 		
 		case O_TRAMPOLIN: 
 			levelitems.push_back(new Trampolim(x,y));
 			//por enquanto...
-			currentControllableObject = levelitems.at(levelitems.size()-1);
+			if(controllable){
+				controllableObjects.push_back(levelitems.at(levelitems.size()-1));
+			}else{
+				if(child.to_element().has_attribute("angle")){
+					float angle = CL_StringHelp::text_to_float(child.to_element().get_attribute("angle").c_str());
+					((Trampolim*)levelitems.at(levelitems.size()-1))->setRotation(CL_Angle::from_degrees(angle).to_radians());
+				}
+			}
 			break;
 
 		case O_GOAL: 
@@ -264,8 +290,15 @@ void Level::restart(){
 
 
 void Level::wiimote_input(float pitch){
-	if(currentControllableObject->getType()==O_TRAMPOLIN)
-		((Trampolim*)currentControllableObject)->setRotation(CL_Angle::from_degrees(pitch).to_radians());
-	if(currentControllableObject->getType()==O_KRAMP)
-		((KinematicRamp*)currentControllableObject)->setRotation(CL_Angle::from_degrees(pitch).to_radians());
+	PhysicalObject * currentControllableObject;
+
+	for(int i=0; i<controllableObjects.size(); i++){
+		currentControllableObject = controllableObjects.at(i);
+
+		if(currentControllableObject->getType()==O_TRAMPOLIN)
+			((Trampolim*)currentControllableObject)->setRotation(CL_Angle::from_degrees(pitch).to_radians());
+		if(currentControllableObject->getType()==O_KRAMP)
+			((KinematicRamp*)currentControllableObject)->setRotation(CL_Angle::from_degrees(pitch).to_radians());
+	}
+	
 }

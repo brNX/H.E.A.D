@@ -7,7 +7,7 @@ class Ball :
 {
 public:
 	Ball(void);
-	Ball(float radius,float x, float y);
+	Ball(float radius,float x, float y, float fX, float fY);
 	~Ball(void);
 private:
 	float radius;

@@ -322,6 +322,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\level3.xml"
+					>
+				</File>
+				<File
 					RelativePath=".\levels.xml"
 					>
 				</File>

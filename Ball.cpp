@@ -16,7 +16,7 @@ Ball::Ball(void)
 }
 
 ///construtor com posi��o e raio
-Ball::Ball(float radius,float x,float y)
+Ball::Ball(float radius,float x,float y, float fX, float fY)
 {
 	type = O_BALL;
 	this->radius=radius;
@@ -33,7 +33,7 @@ Ball::Ball(float radius,float x,float y)
 	//define o tipo e a posição
 	bodydef.type = b2_dynamicBody;
 	bodydef.position.Set(x,y);
-	bodydef.linearVelocity=b2Vec2(0.0f,-8.0f);
+	bodydef.linearVelocity=b2Vec2(fX,fY);
 
 	//define a forma
 	bodyshape=new b2CircleShape();

@@ -27,7 +27,8 @@ private:
 	CL_String name;
 	Ball * gameBall;
 	int levelindex;
-	PhysicalObject * currentControllableObject;
+	//PhysicalObject * currentControllableObject;
+	std::vector<PhysicalObject*> controllableObjects;
 	std::vector<PhysicalObject*> levelitems;
 	b2World * world;
 	BallContactListener listener;
