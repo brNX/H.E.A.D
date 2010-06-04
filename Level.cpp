@@ -1,6 +1,7 @@
 #include "Level.h"
 #include "PhysicalObject.h"
 #include "Ball.h"
+#include "Bumper.h"
 #include "Block.h"
 #include "StartRamp.h"
 #include "Trampolim.h"
@@ -32,6 +33,7 @@ Level::Level(CL_String _name,int _levelindex)
 	dict[CL_String("Goal")]=O_GOAL;
 	dict[CL_String("GoalSensor")]=O_GOALSENSOR;
 	dict[CL_String("KinematicRamp")]=O_KRAMP;
+	dict[CL_String("Bumper")]=O_BUMPER;
 
 	name = _name;
 	printf("name : %s\n",name.c_str());
@@ -142,6 +144,10 @@ void Level::setupLevel(){
 		case O_KRAMP: 
 			levelitems.push_back(new KinematicRamp(x,y));
 			currentControllableObject = levelitems.at(levelitems.size()-1);
+			break;
+
+		case O_BUMPER: 
+			levelitems.push_back(new Bumper(x,y));
 			break;
 		
 		case O_TRAMPOLIN: 
