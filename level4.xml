@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level>
+
+  <object type='Ball'>
+    <Position x='15.822' y='31.185'/>
+    <Radius>1.0</Radius>
+    <Force x='0.0' y='0.0' />
+  </object>
+
+  <object type='KinematicRamp' controllable='true'>
+    <Position x='16.041' y='23.44' angle='45'/>
+  </object>
+  <object type='KinematicRamp' controllable='true'>
+    <Position x='16.041' y='12.711' angle='45'/>
+  </object>
+  <object type='KinematicRamp' controllable='true'>
+    <Position x='6.184' y='16.69' angle='45'/>
+  </object>
+  <object type='KinematicRamp' controllable='true'>
+    <Position x='24.948' y='16.69' angle='45'/>
+  </object>
+  <object type='KinematicRamp' controllable='true'>
+    <Position x='9.416' y='8.262' angle='45'/>
+  </object>
+  <object type='KinematicRamp' controllable='true'>
+    <Position x='22.676' y='8.262' angle='45'/>
+  </object>
+  
+
+  <object type='Pit'>
+    <Position x='20.876' y='-4.476'/>
+    <Hsize x='30.0' y='3.0'/>
+  </object>
+
+
+  <object type='Goal'>
+    <Position x='29.75' y='-0.793'/>
+  </object>
+
+  <object type='GoalSensor'>
+    <Position x='29.75' y='-0.793'/>
+  </object>
+
+  <object type='Goal'>
+    <Position x='2.761' y='-0.793'/>
+  </object>
+
+  <object type='GoalSensor'>
+    <Position x='2.761' y='-0.793'/>
+  </object>
+</level>
